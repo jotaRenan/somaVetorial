@@ -39,11 +39,14 @@ a {
 }
 .vetor {
   justify-content: center;
+  display: flex;
+  align-items: center;
   text-align: center;
+  flex-wrap: wrap;
   width: 200px;
   padding: 0px 10px 15px;
 }
-#seta {
+.seta {
   transition: transform 0.3s linear;
   width: 100%;
 }
