@@ -1,70 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
-  <style type="text/css" media="screen">
-
-    body, html {
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 940px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    #header {
-      background-color: LightGoldenRodYellow;
-    }
-    #main {
-      background-color: lightblue;
-    }
-    .vetor {
-      justify-content: center;
-      width: 200px;
-    }
-    #seta {
-      transition: transform 0.3s linear;
-      width: 100%;
-    }
-
-  </style>
-
-  <script type="text/javascript" charset="utf-8" async defer>
-    
-
-    function mudaCanvas(val) {
-      var seta = document.getElementById('seta');
-      seta.style.transform = "rotate(" + (-val) + "deg)";
-    }
-
-    window.onload = function() {
-
-      document.getElementById('valorRange').addEventListener('input', function(e) {
-        document.getElementById('valorNumber').value = e.target.value;
-        document.getElementById('valorFinal').value = e.target.value;
-        mudaCanvas(e.target.value);
-      }, false);
-
-      document.getElementById('valorNumber').addEventListener('input', function(e) {
-        var valor = e.target.value;
-        while (valor > 360) {
-          valor -= 360;
-        }
-        document.getElementById('valorRange').value = valor;
-        document.getElementById('valorFinal').value = valor;
-        mudaCanvas(valor);
-      }, false);
-
-    };
-  </script>
-
+  <title>Calculando Vetores</title>
+  <meta charset="utf-8">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="prototipo.css">
+  <script src="prototipo.js" type="text/javascript" charset="utf-8" async defer></script>
 </head>
 <body>
-
-  <header id="header" class="">
+  <header id="header" class="row header">
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="#" title="Home">Home</a></li>
+          <li><a href="#" title="ComoFunciona">Como Funciona</a></li>
+          <li><a href="#" title="Exercicios">Exercicios</a></li>
+        </ul>
+      </nav>
+    </div>
     <!-- INSERIR CABEÇALHO DA PAGINA -->
   </header><!-- /header -->
 
@@ -72,29 +25,28 @@
     <div class="container" id="main">
 
       <section class="vetor">
+        <h3>Vetor 1:</h3>
+        <img src="seta2.png" alt="seta vetorial" id="seta" draggable="false">
+        <label for="valorNumber">Ângulo absoluto: </label>
         <input type="number" id="valorNumber" min="0" max="360">
         <input type="range" value="0" id="valorRange" min="0" max="360" step="15">
+        <br>
+        <label for="valorFinal">Ângulo correspondente: </label>
         <input type="number" disabled id="valorFinal">
-        <img src="seta2.png" alt="seta vetorial" id="seta" >
       </section>
-
-      <!-- <section class="vetor">
-        <input type="number" class="valorNumber" min="0" max="360">
-        <input type="range" value="0" id="valorRange" min="0" max="360" step="15">
-        <input type="number" disabled id="valorFinal">
-        <img src="seta2.png" alt="seta vetorial" class="seta" >
-      </section> -->
-
 
     </div>
   </main>
   
-  <footer>
+  <footer class="row footer">
     <!-- INSERIR RODAPE -->
     <div class="container">
+      <!-- INSERIR LOGO CEFET -->
+      <ul>
+        <li>Quem somos</li>
 
+      </ul>
     </div>
   </footer>
-
 </body>
 </html>
