@@ -13,31 +13,70 @@ body {
 .container {
   max-width: 940px;
   margin: 0 auto;
+}
+
+.box {
+  margin: 0 auto;  
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
 header {
-  background-color: lightgreen;
+  background-color: deepskyblue;
 }
 header ul li {
   display: inline-block;
   margin: 0 5px;
   background-color: floralWhite;
-  padding: 4px 5px;
+  padding: .5em 1em;
   border-radius: 3px;
 }
+
 header ul li:hover {
   box-shadow: 2px 2px green;
 }
+
 a {
   text-decoration: none;
 }
 
-#main {
-  background-color: deepskyblue;
+main {
+  background-color: ghostwhite;
+  padding: 1em;
+  flex: 1;
+}
+
+.big-box {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 .vetor {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  flex-wrap: wrap;
+  width: 200px;
+  padding: 0px 10px 15px;
+  text-justify: inter-word;
+}
+
+/*Edita inputs que nao sejam range*/
+.vetor input:not([type="range"]) {
+  width: 25%;
+  border: 2px solid dodgerBlue;
+  border-radius: 6px;
+  margin: 2px;
+  padding: 2px;
+}
+
+.vetor-resultante {
+  display: none;
+}
+
+.vetor-final {
   justify-content: center;
   display: flex;
   align-items: center;
@@ -46,10 +85,12 @@ a {
   width: 200px;
   padding: 0px 10px 15px;
 }
+
 .seta {
   transition: transform 0.3s linear;
   width: 100%;
 }
 footer {
   background-color: tomato;
+  height: 2em;
 }
