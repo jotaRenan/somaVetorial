@@ -42,10 +42,12 @@ function resultante() {
   }
   //angulo mesma direção e sentidos diferentes
   else if (Math.max(arrAngulos[0], arrAngulos[1]) - Math.min(arrAngulos[0], arrAngulos[1]) == 180) {
-    if (arrModulos[0] > arrModulos[1])
+    if (arrModulos[0] > arrModulos[1]) {
       angResult = arrAngulos[0];
-    else
+    }
+    else {
       angResult = arrAngulos[1];
+    }
   }
   //angulo direção e sentidos distintos
   else {
