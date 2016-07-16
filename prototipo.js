@@ -28,13 +28,31 @@ function resultante() {
   //--IMPLEMENTAR AQUI FUNCIONALIDADE DE +DE 3 VETORES
   var angulo,
       modResult,
+      angResult,
       a = arrModulos[0];
       b = arrModulos[1];
   //--ANGULO ENTRE 2 VETORES
-  angulo= Math.max(arrAngulos[0], arrAngulos[1]) - Math.min(arrAngulos[0], arrAngulos[1]);
+  angulo = Math.max(arrAngulos[0], arrAngulos[1]) - Math.min(arrAngulos[0], arrAngulos[1]);
   //--LEI DOS COSSENOS
   modResult = Math.sqrt( a*a + b*b - 2*a*b*Math.cos(Math.PI - angulo*Math.PI/180) );
-  montarVetor(modResult, angulo);
+  //--ANGULO RESULTANTE
+  //angulo mesma direção e sentido
+  if (arrAngulos[0] == arrAngulos[1]) {
+    angResult = arrAngulos[0];
+  }
+  //angulo mesma direção e sentidos diferentes
+  else if (Math.max(arrAngulos[0], arrAngulos[1]) - Math.min(arrAngulos[0], arrAngulos[1]) == 180) {
+    if (arrModulos[0] > arrModulos[1])
+      angResult = arrAngulos[0];
+    else (arrModulos[1] > arrModulos[0])
+      angResult = arrAngulos[1];
+  }
+  //angulo direção e sentidos distintos
+  else {
+    //FALTA EXPLICAÇÃO DO RONALDO PARA DESCOBRIR ESSA PARTE
+    angResult = (Math.max(arrAngulos[0], arrAngulos[1]) - angulo/2);
+  }
+  montarVetor(modResult, angResult);
 }
 
 
@@ -55,8 +73,8 @@ function montarVetor(mod, angulo) {
     vetRes.getElementsByClassName('seta')[0].src = "seta1.png";
     //As duas linhas abaixo estao com calculos errados. Tentem corrigir. por favor
     //Para entender erro: coloquem 0 e 270 degraus para somar.
-    vetRes.getElementsByClassName('seta')[0].style.transform = "rotate(" + (-angulo/2) + 'deg)';    
-    vetRes.getElementsByClassName('valorFinal')[0].value = angulo/2;
+    vetRes.getElementsByClassName('seta')[0].style.transform = "rotate(" + (-angulo) + 'deg)';    
+    vetRes.getElementsByClassName('valorFinal')[0].value = angulo;
   }
   vetRes.getElementsByClassName('modulo')[0].value = mod;
 
@@ -83,11 +101,11 @@ function linkar(vetor) {
 
     rotacionar(e.target.value, e.target.parentNode);
   }, false);
-
+//
   //---CASO ALTERE VALOR PELO INPUT
   vetor.getElementsByClassName('valorNumber')[0].addEventListener('input', function(e) {
     var valor = e.target.value;
-    while (valor > 360) {     //alguem melhora essa parada aqui pq ta um lixo
+    while (valor >= 360) {     //alguem melhora essa parada aqui pq ta um lixo
       valor -= 360;
     }
     valor = (valor < 0) ? eval(360+valor) : valor;
