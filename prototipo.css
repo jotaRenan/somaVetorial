@@ -94,3 +94,12 @@ footer {
   background-color: tomato;
   height: 2em;
 }
+
+@viewport{
+    zoom: 1.0;
+    width: extend-to-zoom;
+}
+@-ms-viewport{
+    width: extend-to-zoom;
+    zoom: 1.0;
+}

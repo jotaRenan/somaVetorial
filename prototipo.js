@@ -68,7 +68,9 @@ function montarVetor(mod, angulo) {
   }
   //--caso o modulo da resultante seja nula, caso especial
   if (mod === 0) {
-    vetRes.getElementsByClassName('seta')[0].src = "zero.png";
+    var  seta = vetRes.getElementsByClassName('seta')[0];
+    seta.style.transform = 'rotate(0)';
+    seta.src = "zero.png";
     vetRes.getElementsByClassName('valorFinal')[0].value = 0;
   }
   else {
