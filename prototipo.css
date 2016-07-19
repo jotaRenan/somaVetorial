@@ -15,7 +15,9 @@ body {
   margin: 0 auto;
 }
 
-
+img {
+  width: 100%;
+}
 
 header {
   background-color: deepskyblue;
@@ -88,7 +90,7 @@ main {
   padding: 0px 10px 15px;
 }
 
-.seta {
+.seta:not([src="zero.png"]) {
   transition: transform 0.3s linear;
   width: 100%;
 }
@@ -97,11 +99,6 @@ footer {
   height: 2em;
 }
 
-@viewport{
-    zoom: 1.0;
-    width: extend-to-zoom;
-}
 @-ms-viewport{
-    width: extend-to-zoom;
-    zoom: 1.0;
+  width: device-width;
 }
