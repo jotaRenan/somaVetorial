@@ -109,9 +109,11 @@ function linkar(vetor) {
   //---CASO ALTERE VALOR PELO INPUT
   vetor.getElementsByClassName('valorNumber')[0].addEventListener('input', function(e) {
     var valor = e.target.value;
-    while (valor >= 360) {     //alguem melhora essa parada aqui pq ta um lixo
-      valor -= 360;
+    
+    if(valor>=360) {
+      valor = valor%360;
     }
+
     valor = (valor < 0) ? eval(360+valor) : valor;
     e.target.parentNode.getElementsByClassName('valorRange')[0].value = valor;
     e.target.parentNode.getElementsByClassName('valorFinal')[0].value = valor;
