@@ -15,12 +15,7 @@ body {
   margin: 0 auto;
 }
 
-.box {
-  margin: 0 auto;  
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+
 
 header {
   background-color: deepskyblue;
@@ -28,7 +23,7 @@ header {
 header ul li {
   display: inline-block;
   margin: 0 5px;
-  background-color: floralWhite;
+  background-color: floralwhite;
   padding: .5em 1em;
   border-radius: 3px;
 }
@@ -45,6 +40,13 @@ main {
   background-color: ghostwhite;
   padding: 1em;
   flex: 1;
+}
+
+.box {
+  margin: 0 auto;  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .big-box {
