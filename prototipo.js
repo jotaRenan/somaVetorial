@@ -51,8 +51,22 @@ function resultante() {
   }
   //angulo direção e sentidos distintos
   else {
-    //FALTA EXPLICAÇÃO DO RONALDO PARA DESCOBRIR ESSA PARTE
-    angResult = (Math.max(arrAngulos[0], arrAngulos[1]) - angulo/2);
+    //TA BUGANDO PRA CARALHO VEI
+    if (angulo > 180) {
+      angulo = 360 - angulo;
+    }
+    //calculando o angulo entre o vetor resultante e o maior vetor
+    var senoX = Math.min(arrModulos[0], arrModulos[1]) * Math.sin((180-angulo)*Math.PI/180)/modResult;
+    var rad = Math.asin(senoX);
+    var x = (rad*180)/Math.PI;
+    //formando o ângulo resultante
+    if (arrAngulos[0] < 180 && arrAngulos[1] < 180) {
+      angResult = (Math.max(arrAngulos[0], arrAngulos[1]) - x);
+    }
+    else if (arrAngulos[0] > 180 && arrAngulos[1] > 180) {
+      angResult = (Math.min(arrAngulos[0], arrAngulos[1]) + x);
+    }
+    //........
   }
   montarVetor(modResult, angResult);
 }
