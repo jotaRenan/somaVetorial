@@ -15,9 +15,7 @@ body {
   margin: 0 auto;
 }
 
-img {
-  width: 100%;
-}
+
 
 header {
   background-color: deepskyblue;
@@ -90,7 +88,7 @@ main {
   padding: 0px 10px 15px;
 }
 
-.seta:not([src="zero.png"]) {
+.seta {
   transition: transform 0.3s linear;
   width: 100%;
 }
@@ -99,6 +97,30 @@ footer {
   height: 2em;
 }
 
+@viewport{
+    zoom: 1.0;
+    width: extend-to-zoom;
+}
 @-ms-viewport{
-  width: device-width;
+    width: extend-to-zoom;
+    zoom: 1.0;
+}
+
+#mainqs {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.desc {
+  -webkit-flex: none;
+  flex: none;
+  width: 450px;
+  height: 250px;
+}
+
+.descimg {
+  -webkit-flex: none;
+  flex: none;
+  width: 250px;
+  height: 200px;
 }
