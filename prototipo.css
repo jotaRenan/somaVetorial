@@ -22,9 +22,12 @@ img {
 header {
   background-color: deepskyblue;
 }
-header ul li {
+
+ul { padding: 0; }
+
+header ul li, footer ul li {
   display: inline-block;
-  margin: 0 5px;
+  margin: .3em .4em;
   background-color: floralwhite;
   padding: .5em 1em;
   border-radius: 3px;
@@ -96,7 +99,7 @@ main {
 }
 footer {
   background-color: tomato;
-  height: 2em;
+  /*height: 2em;*/
 }
 
 @viewport{
@@ -124,4 +127,17 @@ footer {
   flex: none;
   width: 250px;
   height: 200px;
+}
+
+.vetUn {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+
+.vetUn input {
+  width: 25%;
 }
