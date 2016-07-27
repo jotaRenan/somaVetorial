@@ -51,22 +51,53 @@ function resultante() {
   }
   //angulo direção e sentidos distintos
   else {
-    //TA BUGANDO PRA CARALHO VEI
-    if (angulo > 180) {
-      angulo = 360 - angulo;
-    }
     //calculando o angulo entre o vetor resultante e o maior vetor
     var senoX = Math.min(arrModulos[0], arrModulos[1]) * Math.sin((180-angulo)*Math.PI/180)/modResult;
     var rad = Math.asin(senoX);
     var x = (rad*180)/Math.PI;
+    if (x < 0) {
+      x*= -1;
+    }
+    //pequena gambiarra
+    if (arrAngulos[0] == 0 || arrAngulos[0] == 360) {
+      if (arrAngulos[1] > 180) {
+        arrAngulos[0] = 360;
+      }
+      else {
+        arrAngulos[0] = 0;
+      }
+    }
+    if (arrAngulos[1] == 0 || arrAngulos[1] == 360) {
+      if (arrAngulos[0] > 180) {
+        arrAngulos[1] = 360;
+      }
+      else {
+        arrAngulos[1] = 0;
+      }
+    }
     //formando o ângulo resultante
-    if (arrAngulos[0] < 180 && arrAngulos[1] < 180) {
-      angResult = (Math.max(arrAngulos[0], arrAngulos[1]) - x);
+    if (arrModulos[0] > arrModulos[1]) {
+      if (arrAngulos[0] > arrAngulos[1]) {
+        angResult = arrAngulos[0] - x;
+      }
+      else {
+        angResult = arrAngulos[0] + x;
+      }
     }
-    else if (arrAngulos[0] > 180 && arrAngulos[1] > 180) {
-      angResult = (Math.min(arrAngulos[0], arrAngulos[1]) + x);
+    else if (arrModulos[1] > arrModulos[0]) {
+      if (arrAngulos[1] > arrAngulos[0]) {
+        angResult = arrAngulos[1] - x;
+      }
+      else {
+        angResult = arrAngulos[1] + x;
+      }
     }
-    //........
+    else if(arrModulos[0] == arrModulos[1]) {
+      angResult = Math.min(arrAngulos[0], arrAngulos[1]) + x;
+    }
+  }
+  if (angResult > 360) {
+    angResult %= 360;
   }
   montarVetor(modResult, angResult);
 }
