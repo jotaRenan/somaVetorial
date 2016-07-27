@@ -14,7 +14,7 @@ window.onload = function() {
 
 //--rotaciona setas de acordo com angulo
 function rotacionar(val, vetor) {
-  var seta = vetor.getElementsByClassName('seta')[0];
+  var seta = vetor.parentNode.getElementsByClassName('seta')[0];
   seta.style.transform = "rotate(" + (-val) + "deg)";
 }
 
@@ -160,8 +160,8 @@ function linkar(vetor) {
     }
 
     valor = (valor < 0) ? eval(360+valor) : valor;
-    e.target.parentNode.getElementsByClassName('valorRange')[0].value = valor;
-    e.target.parentNode.getElementsByClassName('valorFinal')[0].value = valor;
+    e.target.parentNode.parentNode.getElementsByClassName('valorRange')[0].value = valor;
+    e.target.parentNode.parentNode.getElementsByClassName('valorFinal')[0].value = valor;
     rotacionar(valor, e.target.parentNode);
   }, false);
 }
