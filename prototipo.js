@@ -76,24 +76,24 @@ function resultante() {
       }
     }
     //formando o ângulo resultante
-    if (arrModulos[0] > arrModulos[1]) {
-      if (arrAngulos[0] > arrAngulos[1]) {
-        angResult = +arrAngulos[0] - +x;
+    if (parseFloat(arrModulos[0]) > parseFloat(arrModulos[1])) {
+      if (parseFloat(arrAngulos[0]) > parseFloat(arrAngulos[1])) { //não ta entrando nessa condição
+        angResult = parseFloat(arrAngulos[0]) - parseFloat(x);
       }
       else {
-        angResult = +arrAngulos[0] + +x;
+        angResult = parseFloat(arrAngulos[0]) + parseFloat(x);
       }
     }
-    else if (arrModulos[1] > arrModulos[0]) {
-      if (arrAngulos[1] > arrAngulos[0]) {
-        angResult = +arrAngulos[1] - +x;
+    else if (parseFloat(arrModulos[1]) > parseFloat(arrModulos[0])) {
+      if (parseFloat(arrAngulos[1]) > parseFloat(arrAngulos[0])) {
+        angResult = parseFloat(arrAngulos[1]) - parseFloat(x);
       }
       else {
-        angResult = +arrAngulos[1] + +x;
+        angResult = parseFloat(arrAngulos[1]) + parseFloat(x);
       }
     }
-    else if(arrModulos[0] == arrModulos[1]) {
-      angResult = +Math.min(arrAngulos[0], arrAngulos[1]) + +x;
+    else if(parseFloat(arrModulos[0]) == parseFloat(arrModulos[1])) {
+      angResult = parseFloat(Math.min(arrAngulos[0], arrAngulos[1])) + parseFloat(x);
     }
   }
   if (angResult > 360) {
@@ -120,8 +120,6 @@ function montarVetor(mod, angulo) {
   }
   else {
     vetRes.getElementsByClassName('seta')[0].src = "seta1.png";
-    //As duas linhas abaixo estao com calculos errados. Tentem corrigir. por favor
-    //Para entender erro: coloquem 0 e 270 degraus para somar.
     vetRes.getElementsByClassName('seta')[0].style.transform = "rotate(" + (-angulo) + 'deg)';    
     vetRes.getElementsByClassName('valorFinal')[0].value = angulo;
   }
