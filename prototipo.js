@@ -78,22 +78,22 @@ function resultante() {
     //formando o ângulo resultante
     if (arrModulos[0] > arrModulos[1]) {
       if (arrAngulos[0] > arrAngulos[1]) {
-        angResult = arrAngulos[0] - x;
+        angResult = +arrAngulos[0] - +x;
       }
       else {
-        angResult = arrAngulos[0] + x;
+        angResult = +arrAngulos[0] + +x;
       }
     }
     else if (arrModulos[1] > arrModulos[0]) {
       if (arrAngulos[1] > arrAngulos[0]) {
-        angResult = arrAngulos[1] - x;
+        angResult = +arrAngulos[1] - +x;
       }
       else {
-        angResult = arrAngulos[1] + x;
+        angResult = +arrAngulos[1] + +x;
       }
     }
     else if(arrModulos[0] == arrModulos[1]) {
-      angResult = Math.min(arrAngulos[0], arrAngulos[1]) + x;
+      angResult = +Math.min(arrAngulos[0], arrAngulos[1]) + +x;
     }
   }
   if (angResult > 360) {
