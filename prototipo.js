@@ -7,9 +7,14 @@ window.onload = function() {
     linkar(vetores[i]);
   }
   //---EVENTO DE RESULTADO
-  document.getElementById('resultado').addEventListener('click', function() {
+  document.getElementsByClassName('resultado')[0].addEventListener('click', function() {
     resultante();
   }, false);
+
+  document.getElementsByClassName('resultado')[1].addEventListener('click', function() {
+    unitario();
+  }, false);
+
 };
 
 //--rotaciona setas de acordo com angulo
@@ -164,3 +169,12 @@ function linkar(vetor) {
   }, false);
 }
 
+function unitario() {
+  var iV1 = document.getElementById("iV1");
+  var uV1 = document.getElementById("uV1");
+  var jV1 = document.getElementById("jV1");
+  var iV2 = document.getElementById("iV2");
+  var uV2 = document.getElementById("uV2");
+  var jV2 = document.getElementById("jV2");
+
+}
