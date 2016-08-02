@@ -3,7 +3,7 @@ var vetores = document.getElementsByClassName('vetor'),
 
 window.onload = function() {
   //--HABILITA EVENTOS DOS INPUTS
-  for (var i=0; i<vetores.length-1; i++) {
+  for (var i=0; i<vetores.length; i++) {
     linkar(vetores[i]);
   }
   //---EVENTO DE RESULTADO
@@ -19,7 +19,7 @@ window.onload = function() {
 
 //--rotaciona setas de acordo com angulo
 function rotacionar(val, vetor) {
-  var seta = vetor.parentNode.getElementsByClassName('seta')[0];
+  var seta = vetor.getElementsByClassName('seta')[0];
   seta.style.transform = "rotate(" + (-val) + "deg)";
 }
 
