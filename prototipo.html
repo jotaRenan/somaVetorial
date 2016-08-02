@@ -78,12 +78,12 @@
                 <input type="number" name="i" id="iV1">
               </label>
               <br>
-              <label>Valor de û:
-                <input type="number" name="u" id="uV1">
-              </label>
-              <br>
               <label>Valor de j:
                 <input type="number" name="j" min="0" id="jV1">
+              </label>
+              <br>
+              <label>Valor de û:
+                <input type="number" disabled class="moduloUn" name="u" id="uV1">
               </label>
             </section>
 
@@ -93,17 +93,27 @@
                 <input type="number" name="i" id="iV2">
               </label>
               <br>
-              <label>Valor de û:
-                <input type="number" name="u" id="uV2">
-              </label>
-              <br>
               <label>Valor de j:
                 <input type="number" name="j" min="0" id="jV2">
               </label>
+              <br>
+              <label>Valor de û:
+                <input type="number" disabled class="moduloUn" name="u" id="uV2">
+              </label>
             </section>
 
-            <section>
-              <button class="resultado">Resultado</button>
+            <section class="vetUn">
+              <button id="resultUn">Resultado</button>
+            </section>
+            <!-- SECTION RESULTANTE FICA ESCONDIDA ATE CLICAREM EM RESULTADO -->
+            <section class="vetUn-resultante">
+              <h3>Vetor Resultante:</h3>
+              <label>Módulo: 
+                <input type="number" disabled class="modulo" name="moduloUn" value="0" placeholder="0">
+              </label>
+              <label>Ângulo correspondente: 
+                <input type="number" disabled class="valorFinal" name="anguloUn" value="0" placeholder="0">
+              </label>
             </section>
 
           </div>
