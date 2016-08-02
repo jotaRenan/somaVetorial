@@ -169,12 +169,20 @@ function linkar(vetor) {
   }, false);
 }
 
+
 function unitario() {
-  var iV1 = document.getElementById("iV1");
-  var uV1 = document.getElementById("uV1");
-  var jV1 = document.getElementById("jV1");
-  var iV2 = document.getElementById("iV2");
-  var uV2 = document.getElementById("uV2");
-  var jV2 = document.getElementById("jV2");
+  var iV1 = document.getElementById("iV1").value;
+  var uV1 = document.getElementById("uV1").value;
+  var jV1 = document.getElementById("jV1").value;
+  var iV2 = document.getElementById("iV2").value;
+  var uV2 = document.getElementById("uV2").value;
+  var jV2 = document.getElementById("jV2").value;
+
+  var resultV1 = Math.pow((Math.pow(iV1,2)) + (Math.pow(jV1,2)),0.5); // resultante do primeio vetor
+  document.getElementById("uV1").value = resultV1;
+  var resultV2 = Math.pow((Math.pow(iV2,2)) + (Math.pow(jV2,2)),0.5); // resultante do segundo vetor
+  document.getElementById('uV2').value = resultV2;
+  var mod = Math.pow((Math.pow(resultV1,2)) + (Math.pow(resultV2,2)),0.5); // módulo dos dois vetores
+  document.getElementById('moduloUn').value = mod;
 
 }
