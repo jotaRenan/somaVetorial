@@ -32,7 +32,7 @@
               <label for="modulo">Módulo: </label>
               <input type="number" name="modulo" value="1" placeholder="1" class="modulo">
               <label>Ângulo absoluto: 
-                <input type="number" class="valorNumber" min="0" max="360">
+                <input type="number" class="valorNumber" min="0" max="360" value="0" placeholder="0">
               </label>
               <input type="range" value="0" class="valorRange" min="0" max="360" step="15">
               <br>
@@ -47,7 +47,7 @@
                 <input type="number" name="modulo" value="1" placeholder="1" class="modulo">
               </label>
               <label>Ângulo absoluto: 
-                <input type="number" class="valorNumber" min="0" max="360">
+                <input type="number" class="valorNumber" min="0" max="360" value="0" placeholder="0">
               </label>
               <input type="range" value="0" class="valorRange" min="0" max="360" step="15">
               <br>
@@ -55,7 +55,7 @@
                 <input type="number" disabled class="valorFinal" value="0" placeholder="0">
             </section>
 
-            <section>
+            <section class="vetor">
               <button class="resultado">Resultado</button>
             </section>
             <!-- SECTION RESULTANTE FICA ESCONDIDA ATE CLICAREM EM RESULTADO -->
@@ -75,54 +75,50 @@
             <section class="vetUn">
               <h3>Vetor 1:</h3>
               <label>Valor de î: 
-                <input type="number" name="i" placeholder="0" value="0" id="iV1">
+                <input type="number" name="i" class=" compI" id="iV1" value=0>
               </label>
               <br>
               <label>Valor de j:
-                <input type="number" name="j" placeholder="0" value="0" id="jV1">
+                <input type="number" name="j" class="compJ" id="jV1" value=0>
               </label>
               <br>
               <label>Valor de û:
-                <input type="number" placeholder="0" disabled class="moduloUn" id="uV1">
+                <input type="number" disabled class="moduloUn" id="uV1">
               </label>
             </section>
 
             <section class="vetUn">
               <h3>Vetor 2:</h3>
               <label>Valor de î: 
-                <input type="number" name="i" placeholder="0" value="0" id="iV2">
+                <input type="number" name="i" class="compI" id="iV2" value=0>
               </label>
               <br>
               <label>Valor de j:
-                <input type="number" name="j" placeholder="0" value="0" id="jV2">
+                <input type="number" class="compJ" name="j" id="jV2" value=0>
               </label>
               <br>
               <label>Valor de û:
-                <input type="number" placeholder="0" disabled class="moduloUn" id="uV2">
+                <input type="number" disabled class="moduloUn" id="uV2">
               </label>
             </section>
 
             <section class="vetUn">
+              <button class="addUn" disabled>Acrescentar Vetor</button> <!-- NAO IMPLEMENTADO AINDA -->
               <button class="resultado">Resultado</button>
             </section>
             <!-- SECTION RESULTANTE FICA ESCONDIDA ATE CLICAREM EM RESULTADO -->
             <section class="vetUn-resultante">
               <h3>Vetor Resultante:</h3>
-              <label>Valor de î: 
-                <input type="number" name="i" placeholder="0" value="0" id="iVFinal">
+              <label>Módulo: 
+                <input type="number" disabled class="modulo" id="moduloUn" value="0" placeholder="0">
               </label>
-              <br>
-              <label>Valor de j:
-                <input type="number" name="j" placeholder="0" value="0" id="jVFinal">
-              </label>
-              <br>
-              <label>Valor de û:
-                <input type="number" placeholder="0" disabled class="moduloUn" id="uVFinal">
-              </label>
-              <br>
               <label>Ângulo correspondente: 
                 <input type="number" disabled class="valorFinal" name="anguloUn" value="0" placeholder="0">
               </label>
+              <label>Componente î:
+                <input type="number" class="resI" disabled>
+              </label>
+              <label>Componente j:<input type="number" class="resJ" disabled></label>
             </section>
 
           </div>

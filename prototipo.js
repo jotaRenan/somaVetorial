@@ -3,7 +3,7 @@ var vetores = document.getElementsByClassName('vetor'),
 
 window.onload = function() {
   //--HABILITA EVENTOS DOS INPUTS
-  for (var i=0; i<vetores.length; i++) {
+  for (var i=0; i<vetores.length-1; i++) {
     linkar(vetores[i]);
   }
   //---EVENTO DE RESULTADO
@@ -11,9 +11,12 @@ window.onload = function() {
     resultante();
   }, false);
 
-  document.getElementsByClassName('resultado')[1].addEventListener('click', function() {
+   document.getElementsByClassName('resultado')[1].addEventListener('click', function() {
     unitario();
+    resultanteUn();
   }, false);
+
+  document.getElementsByClassName('addUn')[0].addEventListener('click', acrescentarUn, false);
 
 };
 
@@ -128,7 +131,8 @@ function montarVetor(mod, angulo) {
     vetRes.getElementsByClassName('seta')[0].style.transform = "rotate(" + (-angulo) + 'deg)';    
     vetRes.getElementsByClassName('valorFinal')[0].value = angulo;
   }
-  vetRes.getElementsByClassName('modulo')[0].value = mod;
+  //---Mostra modulo com 3 casas dps da virgula
+  vetRes.getElementsByClassName('modulo')[0].value = mod.toFixed(3);
 
   //--Exibe resultante, caso n esteja sendo exibida
   if (vetRes.classList.contains('vetor-resultante')) {
@@ -165,30 +169,8 @@ function linkar(vetor) {
     valor = (valor < 0) ? eval(360+valor) : valor;
     e.target.parentNode.parentNode.getElementsByClassName('valorRange')[0].value = valor;
     e.target.parentNode.parentNode.getElementsByClassName('valorFinal')[0].value = valor;
-    rotacionar(valor, e.target.parentNode);
+    rotacionar(valor, e.target.parentNode.parentNode);
   }, false);
 }
 
 
-function unitario() {
-  var iV1 = document.getElementById("iV1").value;
-  var uV1 = document.getElementById("uV1").value;
-  var jV1 = document.getElementById("jV1").value;
-  var iV2 = document.getElementById("iV2").value;
-  var uV2 = document.getElementById("uV2").value;
-  var jV2 = document.getElementById("jV2").value;
-
-  var resultV1 = Math.pow((Math.pow(iV1,2)) + (Math.pow(jV1,2)),0.5); // resultante do primeio vetor
-  document.getElementById("uV1").value = resultV1;
-  var resultV2 = Math.pow((Math.pow(iV2,2)) + (Math.pow(jV2,2)),0.5); // resultante do segundo vetor
-  document.getElementById('uV2').value = resultV2;
-
-  //somando os elementos i e j
-  var iVFinal = parseFloat(iV1) + parseFloat(iV2);
-  document.getElementById("iVFinal").value = iVFinal;
-  var jVFinal = parseFloat(jV1) + parseFloat(jV2);
-  document.getElementById("jVFinal").value = jVFinal;
-  var mod = Math.sqrt((Math.pow(iVFinal,2)) + (Math.pow(jVFinal,2))); // módulo dos dois vetores
-  document.getElementById('uVFinal').value = mod;
-
-}
