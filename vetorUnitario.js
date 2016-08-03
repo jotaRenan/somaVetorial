@@ -10,9 +10,14 @@ function unitario() {
   document.getElementById("uV1").value = resultV1;
   var resultV2 = Math.pow((Math.pow(iV2,2)) + (Math.pow(jV2,2)),0.5); // resultante do segundo vetor
   document.getElementById('uV2').value = resultV2;
-  var mod = Math.pow((Math.pow(resultV1,2)) + (Math.pow(resultV2,2)),0.5); // módulo dos dois vetores
-  document.getElementById('moduloUn').value = mod;
 
+  //somando os elementos i e j
+  var iVFinal = parseFloat(iV1) + parseFloat(iV2);
+  document.getElementById("iVFinal").value = iVFinal;
+  var jVFinal = parseFloat(jV1) + parseFloat(jV2);
+  document.getElementById("jVFinal").value = jVFinal;
+  var mod = Math.sqrt((Math.pow(iVFinal,2)) + (Math.pow(jVFinal,2))); // módulo dos dois vetores
+  document.getElementById("uVFinal").value = mod;
 }
 
 function resultanteUn() {
