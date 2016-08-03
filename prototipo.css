@@ -110,24 +110,38 @@ footer {
   width: device-width;
 }
 
-#mainqs {
+.mainqs {
+  padding: 5px;
+  align-items: center;
   display: -webkit-flex;
   display: flex;
+
+  flex-wrap: wrap;
 }
 
 .desc {
-  -webkit-flex: none;
-  flex: none;
-  width: 450px;
-  height: 250px;
+  /*-webkit-flex: none;
+  flex: none;*/
+  /*flex: 1 1;*/
+  padding: 4%;
+
+  flex-grow: 1;
+  
 }
 
 .descimg {
-  -webkit-flex: none;
-  flex: none;
-  width: 250px;
-  height: 200px;
+/*  -webkit-flex: none;
+  flex: none;*/
+  text-align: right;
+  flex-grow: 1.5;
+
 }
+
+.descimg img {
+  height: 7em;
+  width: 7em;
+}
+
 
 .vetUn {
   display: flex;
