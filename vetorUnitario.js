@@ -7,9 +7,9 @@ function unitario() {
   var jV2 = document.getElementById("jV2").value;
 
   var resultV1 = Math.pow((Math.pow(iV1,2)) + (Math.pow(jV1,2)),0.5); // resultante do primeio vetor
-  document.getElementById("uV1").value = resultV1;
+  document.getElementById("uV1").value = resultV1.toFixed(3);
   var resultV2 = Math.pow((Math.pow(iV2,2)) + (Math.pow(jV2,2)),0.5); // resultante do segundo vetor
-  document.getElementById('uV2').value = resultV2;
+  document.getElementById('uV2').value = resultV2.toFixed(3);
 
   //somando os elementos i e j
   var iVFinal = parseFloat(iV1) + parseFloat(iV2);
@@ -17,7 +17,7 @@ function unitario() {
   var jVFinal = parseFloat(jV1) + parseFloat(jV2);
   document.getElementById("jVFinal").value = jVFinal;
   var mod = Math.sqrt((Math.pow(iVFinal,2)) + (Math.pow(jVFinal,2))); // módulo dos dois vetores
-  document.getElementById("uVFinal").value = mod;
+  document.getElementById("uVFinal").value = mod.toFixed(3);
 }
 
 function resultanteUn() {
