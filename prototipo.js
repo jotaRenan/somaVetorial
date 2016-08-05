@@ -28,179 +28,7 @@ function rotacionar(val, vetor) {
 
 function resultante() {
   var ckb = document.getElementsByName('op');
-  
-  if (ckb[0].checked==true) {
-    var arrModulos = [],
-        arrAngulos = [];
-    for (var i=0; i < vetores.length-1; i++) { //array tem 1 elemento a mais
-      arrModulos.push(vetores[i].getElementsByClassName('modulo')[0].value);
-      arrAngulos.push(vetores[i].getElementsByClassName('valorFinal')[0].value);
-    }
-    //--IMPLEMENTAR AQUI FUNCIONALIDADE DE +DE 3 VETORES
-    var angulo,
-        modResult,
-        angResult,
-        a = arrModulos[0];
-        b = arrModulos[1];
-    //--ANGULO ENTRE 2 VETORES
-    angulo = Math.max(arrAngulos[0], arrAngulos[1]) - Math.min(arrAngulos[0], arrAngulos[1]);
-    //--LEI DOS COSSENOS
-    modResult = Math.sqrt( a*a + b*b - 2*a*b*Math.cos(Math.PI - angulo*Math.PI/180) );
-    //--ANGULO RESULTANTE
-    //angulo mesma direção e sentido
-    if (arrAngulos[0] == arrAngulos[1]) {
-      angResult = arrAngulos[0];
-    }
-    //angulo mesma direção e sentidos diferentes
-    else if (Math.max(arrAngulos[0], arrAngulos[1]) - Math.min(arrAngulos[0], arrAngulos[1]) == 180) {
-      if (arrModulos[0] > arrModulos[1]) {
-        angResult = arrAngulos[0];
-      }
-      else {
-        angResult = arrAngulos[1];
-      }
-    }
-    //angulo direção e sentidos distintos
-    else {
-      //calculando o angulo entre o vetor resultante e o maior vetor
-      var senoX = Math.min(arrModulos[0], arrModulos[1]) * Math.sin((180-angulo)*Math.PI/180)/modResult;
-      var rad = Math.asin(senoX);
-      var x = (rad*180)/Math.PI;
-      if (x < 0) {
-        x*= -1;
-      }
-      //pequena gambiarra
-      if (arrAngulos[0] == 0 || arrAngulos[0] == 360) {
-        if (arrAngulos[1] > 180) {
-          arrAngulos[0] = 360;
-        }
-        else {
-          arrAngulos[0] = 0;
-        }
-      }
-      if (arrAngulos[1] == 0 || arrAngulos[1] == 360) {
-        if (arrAngulos[0] > 180) {
-          arrAngulos[1] = 360;
-        }
-        else {
-          arrAngulos[1] = 0;
-        }
-      }
-      //formando o ângulo resultante
-      if (parseFloat(arrModulos[0]) > parseFloat(arrModulos[1])) {
-        if (parseFloat(arrAngulos[0]) > parseFloat(arrAngulos[1])) { //não ta entrando nessa condição
-          angResult = parseFloat(arrAngulos[0]) - parseFloat(x);
-        }
-        else {
-          angResult = parseFloat(arrAngulos[0]) + parseFloat(x);
-        }
-      }
-      else if (parseFloat(arrModulos[1]) > parseFloat(arrModulos[0])) {
-        if (parseFloat(arrAngulos[1]) > parseFloat(arrAngulos[0])) {
-          angResult = parseFloat(arrAngulos[1]) - parseFloat(x);
-        }
-        else {
-          angResult = parseFloat(arrAngulos[1]) + parseFloat(x);
-        }
-      }
-      else if(parseFloat(arrModulos[0]) == parseFloat(arrModulos[1])) {
-        angResult = parseFloat(Math.min(arrAngulos[0], arrAngulos[1])) + parseFloat(x);
-      }
-    }
-    if (angResult > 360) {
-      angResult %= 360;
-    }
-    montarVetor(modResult, angResult);
-  }
-  
-  else if (ckb[1].checked==true) {
-    var arrModulos = [],
-        arrAngulos = [];
-    for (var i=0; i < vetores.length-1; i++) { //array tem 1 elemento a mais
-      arrModulos.push(vetores[i].getElementsByClassName('modulo')[0].value);
-      arrAngulos.push(vetores[i].getElementsByClassName('valorFinal')[0].value);
-    }
-    //--IMPLEMENTAR AQUI FUNCIONALIDADE DE +DE 3 VETORES
-    var angulo,
-        modResult,
-        angResult,
-        a = arrModulos[0];
-        b = arrModulos[1];
-    //--ANGULO ENTRE 2 VETORES
-    angulo = Math.max(arrAngulos[0], arrAngulos[1]) - Math.min(arrAngulos[0], arrAngulos[1]);
-    //--LEI DOS COSSENOS
-    modResult = Math.sqrt( a*a + b*b - 2*a*b*Math.cos(Math.PI - angulo*Math.PI/180) );
-    //--ANGULO RESULTANTE
-    //angulo mesma direção e sentido
-    if (arrAngulos[0] == arrAngulos[1]) {
-      angResult = arrAngulos[0];
-    }
-    //angulo mesma direção e sentidos diferentes
-    else if (Math.max(arrAngulos[0], arrAngulos[1]) - Math.min(arrAngulos[0], arrAngulos[1]) == 180) {
-      if (arrModulos[0] > arrModulos[1]) {
-        angResult = arrAngulos[0];
-      }
-      else {
-        angResult = arrAngulos[1];
-      }
-    }
-    //angulo direção e sentidos distintos
-    else {
-      //calculando o angulo entre o vetor resultante e o maior vetor
-      var senoX = Math.min(arrModulos[0], arrModulos[1]) * Math.sin((180-angulo)*Math.PI/180)/modResult;
-      var rad = Math.asin(senoX);
-      var x = (rad*180)/Math.PI;
-      if (x < 0) {
-        x*= -1;
-      }
-      //pequena gambiarra
-      if (arrAngulos[0] == 0 || arrAngulos[0] == 360) {
-        if (arrAngulos[1] > 180) {
-          arrAngulos[0] = 360;
-        }
-        else {
-          arrAngulos[0] = 0;
-        }
-      }
-      if (arrAngulos[1] == 0 || arrAngulos[1] == 360) {
-        if (arrAngulos[0] > 180) {
-          arrAngulos[1] = 360;
-        }
-        else {
-          arrAngulos[1] = 0;
-        }
-      }
-      //formando o ângulo resultante
-      if (parseFloat(arrModulos[0]) > parseFloat(arrModulos[1])) {
-        if (parseFloat(arrAngulos[0]) > parseFloat(arrAngulos[1])) { //não ta entrando nessa condição
-          angResult = parseFloat(arrAngulos[0]) - parseFloat(x);
-        }
-        else {
-          angResult = parseFloat(arrAngulos[0]) + parseFloat(x);
-        }
-      }
-      else if (parseFloat(arrModulos[1]) > parseFloat(arrModulos[0])) {
-        if (parseFloat(arrAngulos[1]) > parseFloat(arrAngulos[0])) {
-          angResult = parseFloat(arrAngulos[1]) - parseFloat(x);
-        }
-        else {
-          angResult = parseFloat(arrAngulos[1]) + parseFloat(x);
-        }
-      }
-      else if(parseFloat(arrModulos[0]) == parseFloat(arrModulos[1])) {
-        angResult = parseFloat(Math.min(arrAngulos[0], arrAngulos[1])) + parseFloat(x);
-      }
-    }
-    if (angResult > 360) {
-      angResult %= 360;
-    }
-
-    angResult = 360 - angResult
-    montarVetor(modResult, angResult);
-  }
-  
-
-  /*var arrModulos = [],
+  var arrModulos = [],
       arrAngulos = [];
   for (var i=0; i < vetores.length-1; i++) { //array tem 1 elemento a mais
     arrModulos.push(vetores[i].getElementsByClassName('modulo')[0].value);
@@ -280,7 +108,16 @@ function resultante() {
   if (angResult > 360) {
     angResult %= 360;
   }
-  montarVetor(modResult, angResult);*/
+
+  if (ckb[0].checked) {
+    montarVetor(modResult, angResult); 
+  }
+  
+  else if (ckb[1].checked) {
+    angResult = 180 + angResult;
+    montarVetor(modResult, angResult);
+  }
+
 }
 
 
