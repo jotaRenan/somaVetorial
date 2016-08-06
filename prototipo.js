@@ -40,6 +40,10 @@ function resultante() {
       angResult,
       a = arrModulos[0];
       b = arrModulos[1];
+  //--SE FOR UMA SUBTRAÇÃO, O ÂNGULO X A SER SUBTRAÍDO SE TRANSFORMA EM -X
+  if (ckb[1].checked) {
+    arrAngulos[1] = parseFloat(arrAngulos[1]) + parseFloat(180);
+  }
   //--ANGULO ENTRE 2 VETORES
   angulo = Math.max(arrAngulos[0], arrAngulos[1]) - Math.min(arrAngulos[0], arrAngulos[1]);
   //--LEI DOS COSSENOS
@@ -108,16 +112,10 @@ function resultante() {
   if (angResult > 360) {
     angResult %= 360;
   }
-
-  if (ckb[0].checked) {
-    montarVetor(modResult, angResult); 
-  }
-  
-  else if (ckb[1].checked) {
-    angResult = 180 + angResult;
-    montarVetor(modResult, angResult);
-  }
-
+  //--LIMITA CASAS DECIMAIS
+  angResult = angResult.toFixed(3);
+  //--CHAMA A FUNÇÃO MONTAR VETOR
+  montarVetor(modResult, angResult);
 }
 
 
