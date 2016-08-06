@@ -13,7 +13,7 @@ window.onload = function() {
 
    document.getElementsByClassName('resultado')[1].addEventListener('click', function() {
     unitario();
-    resultanteUn();
+    //resultanteUn();
   }, false);
 
   document.getElementsByClassName('addUn')[0].addEventListener('click', acrescentarUn, false);
@@ -112,8 +112,6 @@ function resultante() {
   if (angResult > 360) {
     angResult %= 360;
   }
-  //--LIMITA CASAS DECIMAIS
-  angResult = angResult.toFixed(3);
   //--CHAMA A FUNÇÃO MONTAR VETOR
   montarVetor(modResult, angResult);
 }
