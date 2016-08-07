@@ -1,5 +1,6 @@
+"use strict";
 var vetores = document.getElementsByClassName('vetor'),
-      arrVetores =  Array.prototype.slice.call(vetores);
+    arrVetores =  Array.prototype.slice.call(vetores);
 
 window.onload = function() {
   //--HABILITA EVENTOS DOS INPUTS
@@ -11,10 +12,7 @@ window.onload = function() {
     resultante();
   }, false);
 
-   document.getElementsByClassName('resultado')[1].addEventListener('click', function() {
-    unitario();
-    //resultanteUn();
-  }, false);
+  document.getElementsByClassName('resultado')[1].addEventListener('click', unitario, false);
 
   document.getElementsByClassName('addUn')[0].addEventListener('click', acrescentarUn, false);
 
@@ -38,7 +36,7 @@ function resultante() {
   var angulo,
       modResult,
       angResult,
-      a = arrModulos[0];
+      a = arrModulos[0],
       b = arrModulos[1];
   //--SE FOR UMA SUBTRAÇÃO, O ÂNGULO X A SER SUBTRAÍDO SE TRANSFORMA EM -X
   if (ckb[1].checked) {
@@ -72,7 +70,7 @@ function resultante() {
       x*= -1;
     }
     //pequena gambiarra
-    if (arrAngulos[0] == 0 || arrAngulos[0] == 360) {
+    if (arrAngulos[0] === 0 || arrAngulos[0] == 360) {
       if (arrAngulos[1] > 180) {
         arrAngulos[0] = 360;
       }
@@ -80,7 +78,7 @@ function resultante() {
         arrAngulos[0] = 0;
       }
     }
-    if (arrAngulos[1] == 0 || arrAngulos[1] == 360) {
+    if (arrAngulos[1] === 0 || arrAngulos[1] == 360) {
       if (arrAngulos[0] > 180) {
         arrAngulos[1] = 360;
       }
@@ -113,17 +111,21 @@ function resultante() {
     angResult %= 360;
   }
   //--CHAMA A FUNÇÃO MONTAR VETOR
-  montarVetor(modResult, angResult);
+  montarVetor(modResult, round(angResult, 3));
 }
 
+function round(value, decimals) {
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}
 
 function montarVetor(mod, angulo) {
   //--verifica se vetor resultante ja está sendo exibido
+  var vetRes;
   if (document.getElementsByClassName('vetor-resultante')[0]) {
-    var vetRes = document.getElementsByClassName('vetor-resultante')[0];
+    vetRes = document.getElementsByClassName('vetor-resultante')[0];
   }
   else {
-    var vetRes = document.getElementsByClassName('vetor-final')[0];
+    vetRes = document.getElementsByClassName('vetor-final')[0];
   }
   //--caso o modulo da resultante seja nula, caso especial
   if (mod === 0) {
@@ -138,7 +140,7 @@ function montarVetor(mod, angulo) {
     vetRes.getElementsByClassName('valorFinal')[0].value = angulo;
   }
   //---Mostra modulo com 3 casas dps da virgula
-  vetRes.getElementsByClassName('modulo')[0].value = mod.toFixed(3);
+  vetRes.getElementsByClassName('modulo')[0].value = round(mod, 3);
 
   //--Exibe resultante, caso n esteja sendo exibida
   if (vetRes.classList.contains('vetor-resultante')) {

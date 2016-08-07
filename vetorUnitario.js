@@ -1,34 +1,37 @@
+"use strict";
+
 function unitario() {
-  var ckb = document.getElementsByName('opUn');
-  var iV1 = document.getElementById("iV1").value;
-  var uV1 = document.getElementById("uV1").value;
-  var jV1 = document.getElementById("jV1").value;
-  var iV2 = document.getElementById("iV2").value;
-  var uV2 = document.getElementById("uV2").value;
-  var jV2 = document.getElementById("jV2").value;
+  var ckb = document.getElementsByName('opUn'),
+      iV1 = document.getElementById("iV1").value,
+      uV1 = document.getElementById("uV1").value,
+      jV1 = document.getElementById("jV1").value,
+      iV2 = document.getElementById("iV2").value,
+      uV2 = document.getElementById("uV2").value,
+      jV2 = document.getElementById("jV2").value,
+      iVFinal,
+      jVFinal;
 
   var resultV1 = Math.pow((Math.pow(iV1,2)) + (Math.pow(jV1,2)),0.5); // resultante do primeio vetor
-  document.getElementById("uV1").value = resultV1.toFixed(3);
+  document.getElementById("uV1").value = round(resultV1, 3);
   var resultV2 = Math.pow((Math.pow(iV2,2)) + (Math.pow(jV2,2)),0.5); // resultante do segundo vetor
-  document.getElementById('uV2').value = resultV2.toFixed(3);
+  document.getElementById('uV2').value = round(resultV2, 3);
 
   if(ckb[0].checked) {
     //somando os elementos i e j
-    var iVFinal = parseFloat(iV1) + parseFloat(iV2);
-    document.getElementById("iVFinal").value = iVFinal;
-    var jVFinal = parseFloat(jV1) + parseFloat(jV2);
-    document.getElementById("jVFinal").value = jVFinal;
+    iVFinal = parseFloat(iV1) + parseFloat(iV2);
+    jVFinal = parseFloat(jV1) + parseFloat(jV2);
   }
-  else if (ckb[1].checked) {
+  else {
     //subtraindo os elementos i e j
-    var iVFinal = parseFloat(iV1) - parseFloat(iV2);
-    document.getElementById("iVFinal").value = iVFinal;
-    var jVFinal = parseFloat(jV1) - parseFloat(jV2);
-    document.getElementById("jVFinal").value = jVFinal;
+    iVFinal = parseFloat(iV1) - parseFloat(iV2);
+    jVFinal = parseFloat(jV1) - parseFloat(jV2);
   }
+  document.getElementById("iVFinal").value = iVFinal;
+  document.getElementById("jVFinal").value = jVFinal;
+
   // módulo dos dois vetores
   var mod = Math.sqrt((Math.pow(iVFinal,2)) + (Math.pow(jVFinal,2))); 
-  document.getElementById("uVFinal").value = mod.toFixed(3);
+  document.getElementById("uVFinal").value = round(mod, 3);
 }
 
 function resultanteUn() {

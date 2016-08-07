@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Calculando Vetores</title>
   <meta charset="utf-8">
@@ -7,15 +8,17 @@
   <link rel="stylesheet" type="text/css" href="prototipo.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
   <div class="big-box">
+
     <header id="header" class="row header">
       <div class="container">
         <nav class="box">
           <ul>
-            <li><a href="index.html" title="Home">Home</a></li>
-            <li><a href="#" title="ComoFunciona">Como Funciona</a></li>
-            <li><a href="#" title="Exercicios">Exercicios</a></li>
+            <a href="index.html" title="Home"><li>Home</li></a>
+            <a href="#" title="ComoFunciona"><li>Como Funciona</li></a>
+            <a href="#" title="Exercicios"><li>Exercicios</li></a>
           </ul>
         </nav>
       </div>
@@ -23,13 +26,8 @@
 
     <main> <!-- AQUI FICA O CONTEUDO PRINCIPAL -->
       <div class="container" id="main">
-        <h1>Cálculos com vetores.</h1>
+        <h1>Cálculos com vetores:</h1>
           <div class="box">
-
-            <section class="opVetor">
-              <input type="radio" name="op" checked> Soma Vetorial </input>
-              <input type="radio" name="op"> Subtração Vetorial </input>
-            </section>
 
             <section class="vetor">
               <br>
@@ -62,6 +60,8 @@
             </section>
 
             <section class="vetor">
+              <label>Soma Vetorial<input type="radio" name="op" checked></label>
+              <label>Subtração Vetorial<input type="radio" name="op"></label>
               <button class="resultado">Resultado</button>
             </section>
 
@@ -77,22 +77,17 @@
               </label>
             </section>
           </div>
-          <h1>Cálculos com vetores unitários</h1>
+          <h1>Cálculos com vetores unitários:</h1>
           <div class="box">
-            
-            <section class="opUn">
-              <input type="radio" name="opUn" checked> Soma Vetorial </input>
-              <input type="radio" name="opUn"> Subtração Vetorial </input>
-            </section>
 
             <section class="vetUn">
               <h3>Vetor 1:</h3>
               <label>Valor de î: 
-                <input type="number" name="i" class=" compI" id="iV1" value=0>
+                <input type="number" name="i" class=" compI" id="iV1" value="0">
               </label>
               <br>
               <label>Valor de j:
-                <input type="number" name="j" class="compJ" id="jV1" value=0>
+                <input type="number" name="j" class="compJ" id="jV1" value="0">
               </label>
               <br>
               <label>Valor de û:
@@ -103,11 +98,11 @@
             <section class="vetUn">
               <h3>Vetor 2:</h3>
               <label>Valor de î: 
-                <input type="number" name="i" class="compI" id="iV2" value=0>
+                <input type="number" name="i" class="compI" id="iV2" value="0">
               </label>
               <br>
               <label>Valor de j:
-                <input type="number" class="compJ" name="j" id="jV2" value=0>
+                <input type="number" class="compJ" name="j" id="jV2" value="0">
               </label>
               <br>
               <label>Valor de û:
@@ -117,6 +112,9 @@
 
             <section class="vetUn">
               <button class="addUn" disabled>Acrescentar Vetor</button> <!-- NAO IMPLEMENTADO AINDA -->
+              <label>Adição Vetorial<input type="radio" name="opUn" checked></label>
+              <label>Subtração Vetorial<input type="radio" name="opUn"></label>
+              
               <button class="resultado">Resultado</button>
             </section>
             <!-- SECTION RESULTANTE FICA ESCONDIDA ATE CLICAREM EM RESULTADO -->
@@ -143,13 +141,15 @@
       <div class="container">
         <!-- INSERIR LOGO CEFET -->
         <ul class="box">
-          <li> <a href="quemsomos.html"> Quem somos </a> </li>
-
+          <a href="quemsomos.html"><li>Quem somos</li></a>
         </ul>
       </div>
     </footer>
+
   </div>
+
   <script src="prototipo.js" type="text/javascript" charset="utf-8" async defer></script>
   <script src="vetorUnitario.js" type="text/javascript" charset="utf-8" async defer></script>
+  
 </body>
 </html>
