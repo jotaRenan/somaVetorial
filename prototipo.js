@@ -4,7 +4,7 @@ var vetores = document.getElementsByClassName('vetor'),
 
 window.onload = function() {
   //--HABILITA EVENTOS DOS INPUTS
-  for (var i=0; i<vetores.length-1; i++) {
+  for (var i = 0; i < vetores.length-1; i++) {
     linkar(vetores[i]);
   }
   //---EVENTO DE RESULTADO
@@ -12,9 +12,9 @@ window.onload = function() {
     resultante();
   }, false);
 
-  document.getElementsByClassName('resultado')[1].addEventListener('click', unitario, false);
+  document.getElementsByClassName('resultado')[1].addEventListener('click', calcResultanteUn, false);
 
-  document.getElementsByClassName('addUn')[0].addEventListener('click', acrescentarUn, false);
+  document.getElementsByClassName('addUn')[0].addEventListener('click', acrescentarVetUn, false);
 
 };
 
