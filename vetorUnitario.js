@@ -67,13 +67,42 @@ function acrescentarVetUn() {
   inputs.disabled = "true";
   label.appendChild(inputs);
   section.appendChild(label);
-  //- Linha seguinte: Gambiarra em relaçao a layout. Melhorar.
-  document.getElementsByClassName('box')[2].appendChild(section);
-  if (document.getElementsByClassName('vetUn').length === 5) {
-    document.getElementsByClassName('addUn')[0].disabled="true";
+
+  var vetUn = document.getElementsByClassName('vetUn');
+  insertAfter(section, vetUn[vetUn.length-1]);
+
+  var nmrVet = document.getElementsByClassName('vetUn').length;
+
+  if (nmrVet === 5) {
+    document.getElementById('addUn').disabled = true;
   }
+  else if (nmrVet > 2) {
+    document.getElementById('remUn').disabled = false;
+  }
+
+}
+
+function removerVetUn() {
+
+  var vetUn = document.getElementsByClassName('vetUn'),
+      vetor = vetUn[0].parentNode.lastChild;
+  // BUG: por que o primeiro click p/ remover, nao remove?
+  vetUn[0].parentNode.removeChild(vetor);
+
+  var nmrVet = document.getElementsByClassName('vetUn').length;
+  if (nmrVet === 2) {
+    document.getElementById('remUn').disabled = true;
+  }
+  else if (nmrVet > 2) {
+    document.getElementById('addUn').disabled = false;
+  }
+
 }
 
 function cria(el) {
   return document.createElement(el);
+}
+
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }

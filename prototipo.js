@@ -14,8 +14,9 @@ window.onload = function() {
 
   document.getElementsByClassName('resultado')[1].addEventListener('click', calcResultanteUn, false);
 
-  document.getElementsByClassName('addUn')[0].addEventListener('click', acrescentarVetUn, false);
+  document.getElementById('addUn').addEventListener('click', acrescentarVetUn, false);
 
+  document.getElementById('remUn').addEventListener('click', removerVetUn, false);
 };
 
 //--rotaciona setas de acordo com angulo
