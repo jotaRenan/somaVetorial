@@ -1,13 +1,13 @@
 - Organizar os arquivos em pastas
-  - [ ] pasta `imgs`
-  - [ ] pasta `styles`
-  - [ ] pasta `scripts`
-  - [ ] alterar os arquivos `.html` para apontar para os arquivos dentro das pastas
+  - [x] pasta `imgs`
+  - [x] pasta `styles`
+  - [x] pasta `scripts`
+  - [x] alterar os arquivos `.html` para apontar para os arquivos dentro das pastas
 - Passar a usar algumas funcionalidades de es2015 (JavaScript 6)
-  - [ ] [`for..of`][for-of] em vez do `for(;;)` tradicional
-  - [ ] [`const`/`let`][const-let] em vez de `var` sempre que possível
-  - [ ] [`elemento.classList.add('nome-da-classe')`][classlist] em vez de `elemento.className='nome-da-classe'`
-  - [ ] usar interpolação de _strings_ via [_template strings_][templates]. E.g., em vez do seguinte:
+  - [x] [`for..of`][for-of] em vez do `for(;;)` tradicional
+  - [x] [`const`/`let`][const-let] em vez de `var` sempre que possível
+  - [x] [`elemento.classList.add('nome-da-classe')`][classlist] em vez de `elemento.className='nome-da-classe'`
+  - [x] usar interpolação de _strings_ via [_template strings_][templates]. E.g., em vez do seguinte:
   
     ```js
     titulo.innerHTML = "Vetor " + (document.getElementsByClassName('vetUn').length + 1);
@@ -20,9 +20,9 @@
                                                           // usando crase: `texto ${variavel}`
     ```
 - Padronização/estilo/organização de código
-  - [ ] padronizar uso de áspas para _strings_ (sugiro sempre usar áspas simples em vez de duplas)
+  - [x] padronizar uso de áspas para _strings_ (sugiro sempre usar áspas simples em vez de duplas)
   - [ ] usar nomes de variáveis e funções mais descritivos
-  - [ ] usar algum padrão de projeto para aumentar a organização em módulos ([_module pattern_][module], [_revealing module pattern_][rmodule] etc.)
+  - [] usar algum padrão de projeto para aumentar a organização em módulos ([_module pattern_][module], [_revealing module pattern_][rmodule] etc.)
 
 
 
