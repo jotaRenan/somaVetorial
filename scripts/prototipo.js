@@ -68,16 +68,16 @@ function calcResultanteVetPadrao() {
       x*= -1;
     }
     //pequena gambiarra
-    if (arrAngulos[0] === 0 || arrAngulos[0] == 360) {
-      if (arrAngulos[1] > 180) {
+    if (parseFloat(arrAngulos[0]) === 0 || parseFloat(arrAngulos[0]) === 360) {
+      if (parseFloat(arrAngulos[1]) > 180) {
         arrAngulos[0] = 360;
       }
       else {
         arrAngulos[0] = 0;
       }
     }
-    if (arrAngulos[1] === 0 || arrAngulos[1] == 360) {
-      if (arrAngulos[0] > 180) {
+    if (parseFloat(arrAngulos[1]) === 0 || parseFloat(arrAngulos[1]) === 360) {
+      if (parseFloat(arrAngulos[0]) > 180) {
         arrAngulos[1] = 360;
       }
       else {
@@ -101,8 +101,16 @@ function calcResultanteVetPadrao() {
         angResult = parseFloat(arrAngulos[1]) + parseFloat(x);
       }
     }
-    else if(parseFloat(arrModulos[0]) == parseFloat(arrModulos[1])) {
-      angResult = parseFloat(Math.min(arrAngulos[0], arrAngulos[1])) + parseFloat(x);
+    else if (parseFloat(arrModulos[0]) === parseFloat(arrModulos[1])) {
+      if (parseFloat(arrAngulos[0]) > 270 && parseFloat(arrAngulos[1]) < 90) {
+        angResult = parseFloat(arrAngulos[0]) + parseFloat(x);
+      } 
+      else if (parseFloat(arrAngulos[1]) > 270 && parseFloat(arrAngulos[0]) < 90) {
+        angResult = parseFloat(arrAngulos[1]) + parseFloat(x);
+      }     
+      else {
+        angResult = parseFloat(Math.min(arrAngulos[0], arrAngulos[1])) + parseFloat(x);
+      }
     }
   }
   if (angResult > 360) {
