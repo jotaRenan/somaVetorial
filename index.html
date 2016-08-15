@@ -83,31 +83,39 @@
           <div class="box" id="vetores-unitarios">
             <section class="vetUn">
               <h3>Vetor 1:</h3>
+              <label>Subtração
+                <input type="checkbox" class="cbx-subtracao-un">
+              </label>
+              <br>
               <label>Valor de î: 
-                <input type="number" name="i" class=" compI" id="iV1" value="0">
+                <input type="number" class="compI" value="0">
               </label>
               <br>
               <label>Valor de j:
-                <input type="number" name="j" class="compJ" id="jV1" value="0">
+                <input type="number" class="compJ" value="0">
               </label>
               <br>
               <label>Valor de û:
-                <input type="number" disabled class="moduloUn" id="uV1">
+                <input type="number" class="moduloUn" disabled>
               </label>
             </section>
 
             <section class="vetUn">
               <h3>Vetor 2:</h3>
+              <label>Subtração
+                <input type="checkbox" class="cbx-subtracao-un">
+              </label>
+              <br>
               <label>Valor de î: 
-                <input type="number" name="i" class="compI" id="iV2" value="0">
+                <input type="number" class="compI" value="0">
               </label>
               <br>
               <label>Valor de j:
-                <input type="number" class="compJ" name="j" id="jV2" value="0">
+                <input type="number" class="compJ" value="0">
               </label>
               <br>
               <label>Valor de û:
-                <input type="number" disabled class="moduloUn" id="uV2">
+                <input type="number" class="moduloUn" disabled>
               </label>
             </section>
           </div>
@@ -116,8 +124,6 @@
             <div class="box">
               <button id="addUn">Acrescentar Vetor</button>
               <button id="remUn" disabled>Remover Vetor</button>
-              <label>Adição Vetorial<input type="radio" name="opUn" checked></label>
-              <label>Subtração Vetorial<input type="radio" name="opUn" disabled></label><!-- Ainda nao suportado -->
               <button class="resultado">Resultado</button>
             </div>
           </section>
@@ -128,15 +134,17 @@
           <section class="vetUn-resultante" >
             <h3>Vetor resultante:</h3>
             <label>Módulo: 
-              <input type="number" disabled class="modulo" id="uVFinal" value="0" placeholder="0">
+              <input type="number" class="modulo" value="0" placeholder="0" disabled>
             </label>
             <!--<label>Ângulo correspondente: 
               <input type="number" disabled class="valorFinal" id="anguloUn" value="0" placeholder="0">
             </label> NÃO IMPLEMENTADO-->
             <label>Componente î:
-              <input type="number" disabled class="resI"  id="iVFinal">
+              <input type="number" id="resI" disabled>
             </label>
-            <label>Componente j:<input type="number" disabled class="resJ" id="jVFinal"></label>
+            <label>Componente j:
+              <input type="number" id="resJ" disabled>
+            </label>
           </section>
         </div>
       </div>
