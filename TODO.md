@@ -24,7 +24,15 @@
   - [ ] usar nomes de variáveis e funções mais descritivos
   - [] usar algum padrão de projeto para aumentar a organização em módulos ([_module pattern_][module], [_revealing module pattern_][rmodule] etc.)
 
-
+- Sugestoes do Ronaldo
+  - [x] adicionar eixo K nos vetores unitarios
+  - [] permitir usuario escolher quantidade de algarismos significativos
+  - [] fazer tutorial de como utilizar a aplicacao (sugestao: uso de gifs, como nas propagandas do [Sublime text][sublime-text].)
+  - [x] substituir 'U' por 'modulo'
+  - [ ] Calcular angulo unitario utilizando 
+    
+    ```js
+    arctg (i/j);
 
 [for-of]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/for...of
 [const-let]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
@@ -32,3 +40,4 @@
 [templates]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
 [module]: https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript
 [rmodule]: https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript
+[sublime-text]: https://sublimetext.com
