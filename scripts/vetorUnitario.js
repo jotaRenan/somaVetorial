@@ -6,25 +6,31 @@ function calcResultanteVetUnitario() {
       //--Valores dos componentes inseridos por usuario #j
       compI = [],
       compJ = [],
+      compK = [],
       //--Componentes resultantes #j
       resultanteComponenteI,
-      resultanteComponenteJ;
+      resultanteComponenteJ,
+      resultanteComponenteK;
 
   for ( let vetorUnitario of vetUnitarioEls) {
     //---Vai colocando, nos arrays, os valores inseridos. #j
     let valorCompI = parseFloat(vetorUnitario.querySelector('.compI').value),
-        valorCompJ = parseFloat(vetorUnitario.querySelector('.compJ').value);
+        valorCompJ = parseFloat(vetorUnitario.querySelector('.compJ').value),
+        valorCompK = parseFloat(vetorUnitario.querySelector('.compK').value);
     //---Verifica se usuario deseja subtrair ao inves de adicionar
     if (vetorUnitario.querySelector('.cbx-subtracao-un').checked) {
       valorCompI *= (-1);
       valorCompJ *= (-1);
+      valorCompK *= (-1);
     }
     compI.push(valorCompI);
     compJ.push(valorCompJ);
+    compK.push(valorCompK);
   }
   //---Soma os valores das componentes #j
   let componenteIResultado = calcTotal(compI),
       componenteJResultado = calcTotal(compJ),
+      componenteKResultado = calcTotal(compK),
       moduloVetorResultante;
 
   //---Exibe valores das componentes #j
@@ -32,9 +38,11 @@ function calcResultanteVetUnitario() {
   resultanteComponenteI.value = componenteIResultado;
   resultanteComponenteJ = vetUnResEl.querySelector('#resJ');
   resultanteComponenteJ.value = componenteJResultado;
+  resultanteComponenteK = vetUnResEl.querySelector('#resK');
+  resultanteComponenteK.value = componenteKResultado;
   //---Calcula e exibe modulo do vetor resultante #j
   moduloVetorResultante = Math.sqrt( Math.pow(componenteJResultado, 2) + 
-    Math.pow(componenteIResultado, 2) );
+    Math.pow(componenteIResultado, 2) + Math.pow(componenteKResultado, 2) );
   vetUnResEl.querySelector('.modulo').value = round(moduloVetorResultante, 3);
 }
 
@@ -88,7 +96,16 @@ function acrescentarVetUn() {
   section.appendChild(label);
 
   label = cria('label');
-  label.textContent = 'Valor de u:';
+  label.textContent = 'Valor de k:';
+  inputs = cria('input');
+  inputs.value = 0;
+  inputs.type = 'number';
+  inputs.classList.add('compK');
+  label.appendChild(inputs);
+  section.appendChild(label)
+
+  label = cria('label');
+  label.textContent = 'Modulo:';
   inputs = cria('input');
   inputs.disabled = 'true';
   label.appendChild(inputs);
@@ -119,6 +136,6 @@ function insertAfter(newNode, referenceNode) {
   */
 function controlaAdicaoRemocaoVetUn() {
   const nmrVet = document.getElementsByClassName('vetUn').length;
-  document.getElementById('addUn').disabled = nmrVet === 2;
-  document.getElementById('remUn').disabled = nmrVet === 5;
+  document.getElementById('addUn').disabled = nmrVet === 5;
+  document.getElementById('remUn').disabled = nmrVet === 2;
 }
