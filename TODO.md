@@ -22,14 +22,14 @@
 - Padronização/estilo/organização de código
   - [x] padronizar uso de áspas para _strings_ (sugiro sempre usar áspas simples em vez de duplas)
   - [ ] usar nomes de variáveis e funções mais descritivos
-  - [] usar algum padrão de projeto para aumentar a organização em módulos ([_module pattern_][module], [_revealing module pattern_][rmodule] etc.)
+  - [ ] usar algum padrão de projeto para aumentar a organização em módulos ([_module pattern_][module], [_revealing module pattern_][rmodule] etc.)
 
 - Sugestoes do Ronaldo
-  - [x] adicionar eixo K nos vetores unitarios
-  - [] permitir usuario escolher quantidade de algarismos significativos
-  - [] fazer tutorial de como utilizar a aplicacao (sugestao: uso de gifs, como nas propagandas do [Sublime text][sublime-text].)
-  - [x] substituir 'U' por 'modulo'
-  - [ ] Calcular angulo unitario utilizando 
+  - [x] adicionar eixo K nos vetores unitários
+  - [ ] permitir usuário escolher quantidade de algarismos significativos
+  - [ ] fazer tutorial de como utilizar a aplicação (sugestao: uso de gifs, como nas propagandas do [Sublime text][sublime-text].)
+  - [x] substituir 'U' por 'módulo'
+  - [ ] Calcular ângulo unitario utilizando trigonometria:
     
     ```js
     arctg (i/j);
