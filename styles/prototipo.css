@@ -96,6 +96,7 @@ input:not([type='range']) {
 .seta:not([src='imgs\\zero.png']) {
   transition: transform 0.3s linear;
   width: 100%;
+  z-index: 0;
 }
 footer {
   background-color: tomato;
@@ -142,6 +143,10 @@ footer {
 
 .vetUn input {
   width: 25%;
+}
+
+label {
+  z-index: 2;
 }
 
 #formula {

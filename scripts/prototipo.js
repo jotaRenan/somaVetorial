@@ -130,11 +130,13 @@ function calcResultanteVetPadrao() {
     angResult %= 360; 
   }
 
-  montarVetor(modResult, round(angResult, 3), significativos);
+  montarVetor(modResult, round(angResult, 1), significativos);
 }
 
 function round(value, decimals) {
-  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+  //return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+  value = Number(value);
+  return value.toFixed(decimals);
 }
 
 function montarVetor(mod, angulo, significativos) {
