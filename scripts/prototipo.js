@@ -1,5 +1,6 @@
 'use strict';
 var vetoresEl = document.querySelectorAll('.vetor');
+var significativos;
 
 window.onload = function() {
   //--HABILITA EVENTOS DOS INPUTS
@@ -36,6 +37,12 @@ function calcResultanteVetPadrao() {
       angResult,
       a = arrModulos[0],
       b = arrModulos[1];
+  
+  //DEFINIÇÃO DO NÚMERO DE ALGARISMOS SIGNIFICATIVOS
+  let decimaisVet1 = a.split(".")[1].length;
+  let decimaisVet2 = b.split(".")[1].length;
+  significativos = Math.min(decimaisVet1, decimaisVet2);
+
   //--SE FOR UMA SUBTRAÇÃO, O ÂNGULO X A SER SUBTRAÍDO SE TRANSFORMA EM -X
   if (ckb[1].checked) {
     arrAngulos[1] = parseFloat(arrAngulos[1]) + parseFloat(180);
@@ -114,10 +121,10 @@ function calcResultanteVetPadrao() {
     }
   }
   if (angResult > 360) {
-    angResult %= 360;
+    angResult %= 360; 
   }
-  //--CHAMA A FUNÇÃO MONTAR VETOR
-  montarVetor(modResult, round(angResult, 3));
+
+  montarVetor(modResult, round(angResult, significativos));
 }
 
 function round(value, decimals) {
@@ -145,8 +152,8 @@ function montarVetor(mod, angulo) {
     seta.style.transform = 'rotate(' + (-angulo) + 'deg)';
     vetRes.querySelector('.valorFinal').value = angulo;
   }
-  //---Mostra modulo com 3 casas dps da virgula
-  vetRes.querySelector('.modulo').value = round(mod, 3);
+  //---Mostra modulo com o número correto de alg significativos
+  vetRes.querySelector('.modulo').value = round(mod, significativos);
 
   //--Exibe resultante, caso n esteja sendo exibida
   if (vetRes.classList.contains('vetor-resultante')) {
