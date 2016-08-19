@@ -143,3 +143,7 @@ footer {
 .vetUn input {
   width: 25%;
 }
+
+#formula {
+  font-weight: bold;
+}
