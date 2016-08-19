@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 - Organizar os arquivos em pastas
   - [x] pasta `imgs`
   - [x] pasta `styles`
@@ -35,6 +34,7 @@
     ```js
     arctg (i/j);
 
+    ```
 [for-of]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/for...of
 [const-let]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
 [classlist]: https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
@@ -42,48 +42,3 @@
 [module]: https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript
 [rmodule]: https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript
 [sublime-text]: https://sublimetext.com
-=======
-- Organizar os arquivos em pastas
-  - [x] pasta `imgs`
-  - [x] pasta `styles`
-  - [x] pasta `scripts`
-  - [x] alterar os arquivos `.html` para apontar para os arquivos dentro das pastas
-- Passar a usar algumas funcionalidades de es2015 (JavaScript 6)
-  - [x] [`for..of`][for-of] em vez do `for(;;)` tradicional
-  - [x] [`const`/`let`][const-let] em vez de `var` sempre que possível
-  - [x] [`elemento.classList.add('nome-da-classe')`][classlist] em vez de `elemento.className='nome-da-classe'`
-  - [x] usar interpolação de _strings_ via [_template strings_][templates]. E.g., em vez do seguinte:
-  
-    ```js
-    titulo.innerHTML = "Vetor " + (document.getElementsByClassName('vetUn').length + 1);
-    ```
-    ...prefira:
-    
-    ```js
-    let numeroDoProximoVetor = (document.getElementsByClassName('vetUn').length + 1);
-    titulo.innerHTML = `Vetor ${numeroDoProximoVetor}`;   // repare que delimitamos o texto
-                                                          // usando crase: `texto ${variavel}`
-    ```
-- Padronização/estilo/organização de código
-  - [x] padronizar uso de áspas para _strings_ (sugiro sempre usar áspas simples em vez de duplas)
-  - [ ] usar nomes de variáveis e funções mais descritivos
-  - [] usar algum padrão de projeto para aumentar a organização em módulos ([_module pattern_][module], [_revealing module pattern_][rmodule] etc.)
-
-- Sugestoes do Ronaldo
-  - [x] adicionar eixo K nos vetores unitarios
-  - [] permitir usuario escolher quantidade de algarismos significativos
-  - [] fazer tutorial de como utilizar a aplicacao (sugestao: uso de gifs, como nas propagandas do [Sublime text][sublime-text].)
-  - [x] substituir 'U' por 'modulo'
-  - [ ] Calcular angulo unitario utilizando 
-    
-    ```js
-    arctg (i/j);
-
-[for-of]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/for...of
-[const-let]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
-[classlist]: https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
-[templates]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
-[module]: https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript
-[rmodule]: https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript
-[sublime-text]: https://sublimetext.com
->>>>>>> 0b4f340efb54c6c32edaab35004925859e66d15b
