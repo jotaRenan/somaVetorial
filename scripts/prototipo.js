@@ -1,6 +1,5 @@
 'use strict';
 var vetoresEl = document.querySelectorAll('.vetor');
-var significativos;
 
 window.onload = function() {
   //--HABILITA EVENTOS DOS INPUTS
@@ -39,9 +38,16 @@ function calcResultanteVetPadrao() {
       b = arrModulos[1];
   
   //DEFINIÇÃO DO NÚMERO DE ALGARISMOS SIGNIFICATIVOS
-  let decimaisVet1 = a.split(".")[1].length;
-  let decimaisVet2 = b.split(".")[1].length;
-  significativos = Math.min(decimaisVet1, decimaisVet2);
+  let decimaisVet1 = a.split(".")[1],
+      decimaisVet2 = b.split(".")[1],
+      significativos;
+  //---Checa se nao ha casas decimais
+  if ( !decimaisVet1 || !decimaisVet2) {
+    significativos = 0;
+  }
+  else {
+    significativos = Math.min(decimaisVet1.length, decimaisVet2.length);
+  }
 
   //--SE FOR UMA SUBTRAÇÃO, O ÂNGULO X A SER SUBTRAÍDO SE TRANSFORMA EM -X
   if (ckb[1].checked) {
@@ -124,14 +130,14 @@ function calcResultanteVetPadrao() {
     angResult %= 360; 
   }
 
-  montarVetor(modResult, round(angResult, significativos));
+  montarVetor(modResult, round(angResult, 3), significativos);
 }
 
 function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
 
-function montarVetor(mod, angulo) {
+function montarVetor(mod, angulo, significativos) {
   //--verifica se vetor resultante ja está sendo exibido
   let vetRes;
   if (document.querySelector('.vetor-resultante')) {
