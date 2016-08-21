@@ -26,7 +26,7 @@
 
 - Sugestoes do Ronaldo
   - [x] adicionar eixo K nos vetores unitários
-  - [ ] permitir usuário escolher quantidade de algarismos significativos
+  - [x] permitir usuário escolher quantidade de algarismos significativos
   - [ ] fazer tutorial de como utilizar a aplicação (sugestao: uso de gifs, como nas propagandas do [Sublime text][sublime-text].)
   - [x] substituir 'U' por 'módulo'
   - [ ] Calcular ângulo unitario utilizando trigonometria:
