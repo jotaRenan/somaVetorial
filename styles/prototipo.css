@@ -152,3 +152,7 @@ label {
 #formula {
   font-weight: bold;
 }
+
+.vetUn-resultante {
+  display: none;
+}

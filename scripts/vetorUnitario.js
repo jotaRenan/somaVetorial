@@ -33,6 +33,8 @@ function calcResultanteVetUnitario() {
       componenteKResultado = calcTotal(compK),
       moduloVetorResultante;
 
+  exibirVetorResultante();
+
   //---Exibe valores das componentes #j
   resultanteComponenteI = vetUnResEl.querySelector('#resI');
   resultanteComponenteI.value = componenteIResultado;
@@ -138,4 +140,11 @@ function controlaAdicaoRemocaoVetUn() {
   const nmrVet = document.getElementsByClassName('vetUn').length;
   document.getElementById('addUn').disabled = nmrVet === 5;
   document.getElementById('remUn').disabled = nmrVet === 2;
+}
+//--Controla exibiçao do vetor unitario resultante #J
+function exibirVetorResultante() {
+  let vetResEl = document.querySelector('.vetUn-resultante');
+  if ( getComputedStyle(vetResEl).getPropertyValue('display') == 'none') {
+    vetResEl.style.display = 'block';
+  }
 }
