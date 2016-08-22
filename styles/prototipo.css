@@ -152,3 +152,14 @@ label {
 #formula {
   font-weight: bold;
 }
+
+.vetUn-resultante {
+  display: none;
+}
+
+.butResult {
+  padding: 1em;
+  display: flex;
+  flex-flow: column;
+  align-self: center;
+}

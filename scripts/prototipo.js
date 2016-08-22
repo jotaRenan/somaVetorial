@@ -38,17 +38,22 @@ function calcResultanteVetPadrao() {
       b = arrModulos[1];
   
   //DEFINIÇÃO DO NÚMERO DE ALGARISMOS SIGNIFICATIVOS
-  let decimaisVet1 = a.split(".")[1],
-      decimaisVet2 = b.split(".")[1],
+  let desejaSignificativoEl = document.querySelector('#significativos'),
       significativos;
-  //---Checa se nao ha casas decimais
-  if ( !decimaisVet1 || !decimaisVet2) {
-    significativos = 0;
+  if (desejaSignificativoEl.checked) {
+    let decimaisVet1 = a.split(".")[1],
+        decimaisVet2 = b.split(".")[1];
+    //---Checa se nao ha casas decimais
+    if ( !decimaisVet1 || !decimaisVet2) {
+      significativos = 0;
+    }
+    else {
+      significativos = Math.min(decimaisVet1.length, decimaisVet2.length);
+    }
   }
   else {
-    significativos = Math.min(decimaisVet1.length, decimaisVet2.length);
+    significativos = 3;
   }
-
   //--SE FOR UMA SUBTRAÇÃO, O ÂNGULO X A SER SUBTRAÍDO SE TRANSFORMA EM -X
   if (ckb[1].checked) {
     arrAngulos[1] = parseFloat(arrAngulos[1]) + parseFloat(180);
@@ -205,3 +210,5 @@ function linkar(vetor) {
     rotacionarSetaDoVetor(valorAlvoEl, vetorEl);
   }, false);
 }
+
+

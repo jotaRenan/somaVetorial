@@ -60,9 +60,11 @@
           </section>
 
           <section class="butResult">
-            <label>Soma Vetorial<input type="radio" name="op" checked></label>
+            <label>Soma<input type="radio" name="op" checked></label>
             <br>
-            <label>Subtração Vetorial<input type="radio" name="op"></label>
+            <label>Subtração<input type="radio" name="op"></label>
+            <label>Alg. Significativos</label>
+            <input type="checkbox" id="significativos">
             <button class="resultado">Resultado</button>
           </section>
 
@@ -86,19 +88,15 @@
               <label>Subtração
                 <input type="checkbox" class="cbx-subtracao-un">
               </label>
-              <br>
               <label>Valor de î: 
                 <input type="number" class="compI" value="0">
               </label>
-              <br>
               <label>Valor de j:
                 <input type="number" class="compJ" value="0">
               </label>
-              <br>
               <label>Valor de k:
                 <input type="number" class="compK" value="0">
               </label>
-              <br>
               <label>Modulo:
                 <input type="number" class="moduloUn" disabled>
               </label>
@@ -109,37 +107,31 @@
               <label>Subtração
                 <input type="checkbox" class="cbx-subtracao-un">
               </label>
-              <br>
               <label>Valor de î: 
                 <input type="number" class="compI" value="0">
               </label>
-              <br>
               <label>Valor de j:
                 <input type="number" class="compJ" value="0">
               </label>
-              <br>
               <label>Valor de k:
                 <input type="number" class="compK" value="0">
               </label>
-              <br>
               <label>Modulo:
                 <input type="number" class="moduloUn" disabled>
               </label>
             </section>
           </div>
 
-          <section>
-            <div class="box">
-              <button id="addUn">Acrescentar Vetor</button>
-              <button id="remUn" disabled>Remover Vetor</button>
-              <button class="resultado">Resultado</button>
-            </div>
+          <section class="butResult">
+            <button id="addUn">Acrescentar Vetor</button>
+            <button id="remUn" disabled>Remover Vetor</button>
+            <button class="resultado">Resultado</button>
           </section>
 
         </div>
         <!-- SECTION RESULTANTE FICA ESCONDIDA ATE CLICAREM EM RESULTADO -->
-        <div class="box">
-          <section class="vetUn-resultante" >
+        
+          <section class="vetUn-resultante">
             <h3>Vetor resultante:</h3>
             <label>Módulo: 
               <input type="number" class="modulo" value="0" placeholder="0" disabled>
@@ -157,7 +149,6 @@
               <input type="number" id="resK" disabled>
             </label>
           </section>
-        </div>
       </div>
     </main>
     

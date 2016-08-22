@@ -26,7 +26,7 @@
 
 - Sugestoes do Ronaldo
   - [x] adicionar eixo K nos vetores unitários
-  - [ ] permitir usuário escolher quantidade de algarismos significativos
+  - [x] permitir usuário escolher quantidade de algarismos significativos
   - [ ] fazer tutorial de como utilizar a aplicação (sugestao: uso de gifs, como nas propagandas do [Sublime text][sublime-text].)
   - [x] substituir 'U' por 'módulo'
   - [ ] Calcular ângulo unitario utilizando trigonometria:
@@ -34,7 +34,6 @@
     ```js
     arctg (i/j);
 
-    ```
 [for-of]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/for...of
 [const-let]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
 [classlist]: https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
