@@ -104,7 +104,7 @@ function acrescentarVetUn() {
   inputs.type = 'number';
   inputs.classList.add('compK');
   label.appendChild(inputs);
-  section.appendChild(label)
+  section.appendChild(label);
 
   label = cria('label');
   label.textContent = 'Modulo:';

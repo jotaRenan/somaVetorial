@@ -14,6 +14,10 @@ window.onload = function() {
   document.getElementById('addUn').addEventListener('click', acrescentarVetUn, false);
 
   document.getElementById('remUn').addEventListener('click', removerVetUn, false);
+
+  document.getElementById('addVet').addEventListener('click', acrescentarVetPadrao, false);
+
+  document.getElementById('remVet').addEventListener('click', removerVetPadrao, false);
 };
 
 //--rotaciona setas de acordo com angulo
@@ -176,11 +180,6 @@ function montarVetor(mod, angulo, significativos) {
   
 }
 
-//--Funcao nao-implementada que permitira +de 2 vetores
-function criarVetor() {
-  let sec = document.createElement('section');
-}
-
 //--Faz conexao entre valores dos inputs e rotaçao
 function linkar(vetor) {
   //---CASO ALTERE VALOR PELO RANGE
@@ -211,4 +210,82 @@ function linkar(vetor) {
   }, false);
 }
 
+function acrescentarVetPadrao() {
+  let section, titulo, numeroProxVetor, imagemSeta, label, input;
+  numeroProxVetor = document.querySelectorAll('.vetor').length+1;
+  section = cria('section');
+  section.classList.add('vetor');
+  titulo = cria('h3');
+  titulo.textContent = `Vetor ${numeroProxVetor}:`;
+  section.appendChild(titulo);
+  imagemSeta = cria('img');
+  imagemSeta.src = 'imgs\\seta1.png';
+  imagemSeta.classList.add('seta');
+  imagemSeta.draggable = false;
+  section.appendChild(imagemSeta);
 
+  label = cria('label');
+  label.textContent = 'Módulo';
+  input = cria('input');
+  input.type = 'number';
+  input.min = 0;
+  input.value = 1;
+  input.placeholder = 1;
+  input.classList.add('modulo');
+  label.appendChild(input);
+  section.appendChild(label);
+
+  label = cria('label');
+  label.textContent = 'Ângulo absoluto:';
+
+  input = cria('input');
+  input.type = 'number';
+  input.classList.add('valorNumber');
+  input.min = 0;
+  input.max = 360;
+  input.value = 0;
+  input.placeholder = 0;
+  label.appendChild(input);
+  section.appendChild(label);
+
+  input = cria('input');
+  input.type = 'range';
+  input.value = 0;
+  input.classList.add('valorRange');
+  input.min = 0;
+  input.max = 360;
+  input.step = 15;
+  section.appendChild(input);
+
+  label = cria('label');
+  label.textContent = 'Ângulo correspondente:';
+
+  input = cria('input');
+  input.type = 'number';
+  input.disabled = true;
+  input.classList.add('valorFinal');
+  input.value = 0;
+  input.placeholder = 0;
+  label.appendChild(input);
+  section.appendChild(label);
+
+  linkar(section);
+  const vetoresPadraoEls = document.querySelectorAll('.vetor');
+  insertAfter(section, vetoresPadraoEls[vetoresPadraoEls.length-1]);
+  controlaAdicaoRemocaoVetPadrao();
+}
+
+function removerVetPadrao() {
+  let containerVetoresPadraoEl = document.getElementById('vetores-padrao');
+  //--Por razoes sinistras, usar o selector que deveria funcionar, nao funciona.
+  let tamanho = containerVetoresPadraoEl.querySelectorAll('.vetor').length;
+  containerVetoresPadraoEl.removeChild(containerVetoresPadraoEl.querySelector(`.vetor:nth-child(${tamanho})`));
+  //--Implementar controle de botoes
+  controlaAdicaoRemocaoVetPadrao();
+}
+
+function controlaAdicaoRemocaoVetPadrao() {
+  const nmrVet = document.getElementsByClassName('vetor').length;
+  document.getElementById('addVet').disabled = nmrVet === 5;
+  document.getElementById('remVet').disabled = nmrVet === 2;
+}
