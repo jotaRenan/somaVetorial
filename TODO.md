@@ -33,6 +33,18 @@
     
     ```js
     arctg (i/j);
+    ```
+- Finalização e otimização do código e material
+  - [ ] finalizar uso de localStorage
+  - [ ] otimizar cálculos com vetores unitarios padrão :worried:
+  - [ ] permitir melhor modularização dos calculos com vetores unit. padrão :frowning:
+  - [ ] incluir exercícios
+  - [ ] posicionar checkboxes e inputs adequadamente em relação às label
+
+- Detalhes
+  - [ ] criar logotipo
+  - [ ] escolher esquema de cores
+  - [ ] incluir orientador e coorientador na pagina 'quem somos' :star:
 
 [for-of]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/for...of
 [const-let]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
