@@ -1,11 +1,34 @@
 'use strict';
-var vetoresEl = document.querySelectorAll('.vetor');
 
 window.onload = function() {
   //--HABILITA EVENTOS DOS INPUTS
+  let vetoresEl = document.querySelectorAll('.vetor');
+
   for (let vetALinkar of vetoresEl) {
     linkar(vetALinkar);
   }
+
+  //localStorage, permitindo saber qts vezes o usuario visitou o site #j
+  try {
+    if (!localStorage.getItem('visitas')) {
+      localStorage.setItem('visitas', 0);
+    }
+    else {
+      if (!sessionStorage.getItem('visitaAtual')) { 
+        let visitas = parseFloat(localStorage.getItem('visitas'));
+        if (visitas < 3) {
+          //--Desenvolver codigo de div p/ explicaçao #j
+          document.querySelector('#tutorial').style.display = 'block';
+        }
+        localStorage.setItem('visitas', ++visitas);
+        sessionStorage.setItem('visitaAtual', true);
+      }
+    }
+  }
+  catch (ex) {
+    console.log('Browser não suporta localStorage' + ex.message);
+  }
+
   //---EVENTO DE RESULTADO
   document.getElementsByClassName('resultado')[0].addEventListener('click', calcResultanteVetPadrao, false);
 
@@ -28,6 +51,7 @@ function rotacionarSetaDoVetor(val, vetor) {
 
 function calcResultanteVetPadrao() {
   let ckb = document.getElementsByName('op'),
+      vetoresEl = document.querySelectorAll('.vetor'),
       arrModulos = [],
       arrAngulos = [];
   for (let vetor of vetoresEl) { //array tem 1 elemento a mais

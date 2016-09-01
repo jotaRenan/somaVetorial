@@ -163,3 +163,14 @@ label {
   flex-flow: column;
   align-self: center;
 }
+
+#tutorial {
+  background-color: red;
+  width: 100%;
+  display: none;
+}
+
+#tutorial h1 {
+  padding: 0;
+  margin: 0;
+}
