@@ -30,9 +30,9 @@ window.onload = function() {
   }
 
   //---EVENTO DE RESULTADO
-  document.getElementsByClassName('resultado')[0].addEventListener('click', calcResultanteVetPadrao, false);
+  document.getElementsByClassName('resultado')[0].addEventListener('click', calcVetores, false);
 
-  document.getElementsByClassName('resultado')[1].addEventListener('click', calcResultanteVetUnitario, false);
+  document.getElementsByClassName('resultado')[1].addEventListener('click', calcVetores, false);
 
   document.getElementById('addUn').addEventListener('click', acrescentarVetUn, false);
 
@@ -49,22 +49,12 @@ function rotacionarSetaDoVetor(val, vetor) {
   seta.style.transform = 'rotate(' + (-val) + 'deg)';
 }
 
-function calcResultanteVetPadrao() {
-  let ckb = document.getElementsByName('op'),
-      vetoresEl = document.querySelectorAll('.vetor'),
-      arrModulos = [],
-      arrAngulos = [];
-  for (let vetor of vetoresEl) { //array tem 1 elemento a mais
-    arrModulos.push(vetor.querySelector('.modulo').value);
-    arrAngulos.push(vetor.querySelector('.valorFinal').value);
-  }
-  //--IMPLEMENTAR AQUI FUNCIONALIDADE DE +DE 3 VETORES
+function calcResultanteVetPadrao(arrModulos, arrAngulos, ckb) {
   let angulo,
-      modResult,
-      angResult,
-      a = arrModulos[0],
-      b = arrModulos[1];
-  
+        modResult,
+        angResult,
+        a = arrModulos[0],
+        b = arrModulos[1];
   //DEFINIÇÃO DO NÚMERO DE ALGARISMOS SIGNIFICATIVOS
   let desejaSignificativoEl = document.querySelector('#significativos'),
       significativos;
@@ -162,8 +152,7 @@ function calcResultanteVetPadrao() {
   if (angResult > 360) {
     angResult %= 360; 
   }
-
-  montarVetor(modResult, round(angResult, 1), significativos);
+  return [modResult, angResult, significativos];
 }
 
 function round(value, decimals) {
@@ -312,4 +301,35 @@ function controlaAdicaoRemocaoVetPadrao() {
   const nmrVet = document.getElementsByClassName('vetor').length;
   document.getElementById('addVet').disabled = nmrVet === 5;
   document.getElementById('remVet').disabled = nmrVet === 2;
+}
+
+function calcVetores() {
+  let ckb = document.getElementsByName('op'),
+      vetoresEl = document.querySelectorAll('.vetor'),
+      arrModulos = [],
+      arrAngulos = [],
+      modResult,
+      angResult,
+      significativos;
+  for (let vetor of vetoresEl) { //array tem 1 elemento a mais
+    arrModulos.push(vetor.querySelector('.modulo').value);
+    arrAngulos.push(vetor.querySelector('.valorFinal').value);
+  }
+  for (let i = 0; i < (vetoresEl.length)-1; i++) { //a quantidade de cálculos feitos é a quantidade de vetores menos um
+    let arrA,
+        arrM;
+    if (i == 0) {
+      arrA = [arrAngulos[0], arrAngulos[1]];
+      arrM = [arrModulos[0], arrModulos[1]];
+    }
+    else {
+      arrA = [angResult, arrAngulos[(i+1)]];
+      arrM = [modResult, arrModulos[(i+1)]];
+    }
+    let values = calcResultanteVetPadrao(arrM, arrA, ckb);
+    modResult = values[0];
+    angResult = values[1];
+    significativos = values[2];
+  }
+  montarVetor(modResult, round(angResult, 1), significativos);
 }
