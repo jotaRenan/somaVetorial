@@ -30,9 +30,9 @@ window.onload = function() {
   }
 
   //---EVENTO DE RESULTADO
-  document.getElementsByClassName('resultado')[0].addEventListener('click', calcVetores, false);
+  document.getElementsByClassName('resultado')[0].addEventListener('click', calculaTodosVetores, false);
 
-  document.getElementsByClassName('resultado')[1].addEventListener('click', calcVetores, false);
+  document.getElementsByClassName('resultado')[1].addEventListener('click', calcResultanteVetUnitario, false);
 
   document.getElementById('addUn').addEventListener('click', acrescentarVetUn, false);
 
@@ -303,7 +303,7 @@ function controlaAdicaoRemocaoVetPadrao() {
   document.getElementById('remVet').disabled = nmrVet === 2;
 }
 
-function calcVetores() {
+function calculaTodosVetores() {
   let ckb = document.getElementsByName('op'),
       vetoresEl = document.querySelectorAll('.vetor'),
       arrModulos = [],
@@ -316,6 +316,7 @@ function calcVetores() {
     arrAngulos.push(vetor.querySelector('.valorFinal').value);
   }
   for (let i = 0; i < (vetoresEl.length)-1; i++) { //a quantidade de cálculos feitos é a quantidade de vetores menos um
+    //vetores auxiliares para facilitar a passagem dos vetores para realizar o cálculo
     let arrA,
         arrM;
     if (i == 0) {
