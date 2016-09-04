@@ -1,19 +1,46 @@
 'use strict';
-var vetoresEl = document.querySelectorAll('.vetor');
 
 window.onload = function() {
   //--HABILITA EVENTOS DOS INPUTS
+  let vetoresEl = document.querySelectorAll('.vetor');
+
   for (let vetALinkar of vetoresEl) {
     linkar(vetALinkar);
   }
-  //---EVENTO DE RESULTADO
-  document.getElementsByClassName('resultado')[0].addEventListener('click', calcResultanteVetPadrao, false);
 
-  document.getElementsByClassName('resultado')[1].addEventListener('click', calcResultanteVetUnitario, false);
+  //localStorage, permitindo saber qts vezes o usuario visitou o site #j
+  try {
+    if (!localStorage.getItem('visitas')) {
+      localStorage.setItem('visitas', 0);
+    }
+    else {
+      if (!sessionStorage.getItem('visitaAtual')) { 
+        let visitas = parseFloat(localStorage.getItem('visitas'));
+        if (visitas < 3) {
+          //--Desenvolver codigo de div p/ explicaçao #j
+          document.querySelector('#tutorial').style.display = 'block';
+        }
+        localStorage.setItem('visitas', ++visitas);
+        sessionStorage.setItem('visitaAtual', true);
+      }
+    }
+  }
+  catch (ex) {
+    console.log('Browser não suporta localStorage' + ex.message);
+  }
+
+  //---EVENTO DE RESULTADO
+  document.getElementsByClassName('resultado')[0].addEventListener('click', calcVetores, false);
+
+  document.getElementsByClassName('resultado')[1].addEventListener('click', calcVetores, false);
 
   document.getElementById('addUn').addEventListener('click', acrescentarVetUn, false);
 
   document.getElementById('remUn').addEventListener('click', removerVetUn, false);
+
+  document.getElementById('addVet').addEventListener('click', acrescentarVetPadrao, false);
+
+  document.getElementById('remVet').addEventListener('click', removerVetPadrao, false);
 };
 
 //--rotaciona setas de acordo com angulo
@@ -22,21 +49,12 @@ function rotacionarSetaDoVetor(val, vetor) {
   seta.style.transform = 'rotate(' + (-val) + 'deg)';
 }
 
-function calcResultanteVetPadrao() {
-  let ckb = document.getElementsByName('op'),
-      arrModulos = [],
-      arrAngulos = [];
-  for (let vetor of vetoresEl) { //array tem 1 elemento a mais
-    arrModulos.push(vetor.querySelector('.modulo').value);
-    arrAngulos.push(vetor.querySelector('.valorFinal').value);
-  }
-  //--IMPLEMENTAR AQUI FUNCIONALIDADE DE +DE 3 VETORES
+function calcResultanteVetPadrao(arrModulos, arrAngulos, ckb) {
   let angulo,
-      modResult,
-      angResult,
-      a = arrModulos[0],
-      b = arrModulos[1];
-  
+        modResult,
+        angResult,
+        a = arrModulos[0],
+        b = arrModulos[1];
   //DEFINIÇÃO DO NÚMERO DE ALGARISMOS SIGNIFICATIVOS
   let desejaSignificativoEl = document.querySelector('#significativos'),
       significativos;
@@ -134,8 +152,7 @@ function calcResultanteVetPadrao() {
   if (angResult > 360) {
     angResult %= 360; 
   }
-
-  montarVetor(modResult, round(angResult, 1), significativos);
+  return [modResult, angResult, significativos];
 }
 
 function round(value, decimals) {
@@ -176,11 +193,6 @@ function montarVetor(mod, angulo, significativos) {
   
 }
 
-//--Funcao nao-implementada que permitira +de 2 vetores
-function criarVetor() {
-  let sec = document.createElement('section');
-}
-
 //--Faz conexao entre valores dos inputs e rotaçao
 function linkar(vetor) {
   //---CASO ALTERE VALOR PELO RANGE
@@ -211,4 +223,113 @@ function linkar(vetor) {
   }, false);
 }
 
+function acrescentarVetPadrao() {
+  let section, titulo, numeroProxVetor, imagemSeta, label, input;
+  numeroProxVetor = document.querySelectorAll('.vetor').length+1;
+  section = cria('section');
+  section.classList.add('vetor');
+  titulo = cria('h3');
+  titulo.textContent = `Vetor ${numeroProxVetor}:`;
+  section.appendChild(titulo);
+  imagemSeta = cria('img');
+  imagemSeta.src = 'imgs\\seta1.png';
+  imagemSeta.classList.add('seta');
+  imagemSeta.draggable = false;
+  section.appendChild(imagemSeta);
 
+  label = cria('label');
+  label.textContent = 'Módulo';
+  input = cria('input');
+  input.type = 'number';
+  input.min = 0;
+  input.value = 1;
+  input.placeholder = 1;
+  input.classList.add('modulo');
+  label.appendChild(input);
+  section.appendChild(label);
+
+  label = cria('label');
+  label.textContent = 'Ângulo absoluto:';
+
+  input = cria('input');
+  input.type = 'number';
+  input.classList.add('valorNumber');
+  input.min = 0;
+  input.max = 360;
+  input.value = 0;
+  input.placeholder = 0;
+  label.appendChild(input);
+  section.appendChild(label);
+
+  input = cria('input');
+  input.type = 'range';
+  input.value = 0;
+  input.classList.add('valorRange');
+  input.min = 0;
+  input.max = 360;
+  input.step = 15;
+  section.appendChild(input);
+
+  label = cria('label');
+  label.textContent = 'Ângulo correspondente:';
+
+  input = cria('input');
+  input.type = 'number';
+  input.disabled = true;
+  input.classList.add('valorFinal');
+  input.value = 0;
+  input.placeholder = 0;
+  label.appendChild(input);
+  section.appendChild(label);
+
+  linkar(section);
+  const vetoresPadraoEls = document.querySelectorAll('.vetor');
+  insertAfter(section, vetoresPadraoEls[vetoresPadraoEls.length-1]);
+  controlaAdicaoRemocaoVetPadrao();
+}
+
+function removerVetPadrao() {
+  let containerVetoresPadraoEl = document.getElementById('vetores-padrao');
+  //--Por razoes sinistras, usar o selector que deveria funcionar, nao funciona.
+  let tamanho = containerVetoresPadraoEl.querySelectorAll('.vetor').length;
+  containerVetoresPadraoEl.removeChild(containerVetoresPadraoEl.querySelector(`.vetor:nth-child(${tamanho})`));
+  //--Implementar controle de botoes
+  controlaAdicaoRemocaoVetPadrao();
+}
+
+function controlaAdicaoRemocaoVetPadrao() {
+  const nmrVet = document.getElementsByClassName('vetor').length;
+  document.getElementById('addVet').disabled = nmrVet === 5;
+  document.getElementById('remVet').disabled = nmrVet === 2;
+}
+
+function calcVetores() {
+  let ckb = document.getElementsByName('op'),
+      vetoresEl = document.querySelectorAll('.vetor'),
+      arrModulos = [],
+      arrAngulos = [],
+      modResult,
+      angResult,
+      significativos;
+  for (let vetor of vetoresEl) { //array tem 1 elemento a mais
+    arrModulos.push(vetor.querySelector('.modulo').value);
+    arrAngulos.push(vetor.querySelector('.valorFinal').value);
+  }
+  for (let i = 0; i < (vetoresEl.length)-1; i++) { //a quantidade de cálculos feitos é a quantidade de vetores menos um
+    let arrA,
+        arrM;
+    if (i == 0) {
+      arrA = [arrAngulos[0], arrAngulos[1]];
+      arrM = [arrModulos[0], arrModulos[1]];
+    }
+    else {
+      arrA = [angResult, arrAngulos[(i+1)]];
+      arrM = [modResult, arrModulos[(i+1)]];
+    }
+    let values = calcResultanteVetPadrao(arrM, arrA, ckb);
+    modResult = values[0];
+    angResult = values[1];
+    significativos = values[2];
+  }
+  montarVetor(modResult, round(angResult, 1), significativos);
+}
