@@ -49,33 +49,15 @@ function rotacionarSetaDoVetor(val, vetor) {
   seta.style.transform = 'rotate(' + (-val) + 'deg)';
 }
 
-function calcResultanteVetPadrao(arrModulos, arrAngulos, ckb) {
+function calcResultanteVetPadrao(arrModulos, arrAngulos) {
   let angulo,
-        modResult,
-        angResult,
-        a = arrModulos[0],
-        b = arrModulos[1];
+      modResult,
+      angResult,
+      a = arrModulos[0],
+      b = arrModulos[1];
   //DEFINIÇÃO DO NÚMERO DE ALGARISMOS SIGNIFICATIVOS
   let desejaSignificativoEl = document.querySelector('#significativos'),
       significativos;
-  if (desejaSignificativoEl.checked) {
-    let decimaisVet1 = a.split(".")[1],
-        decimaisVet2 = b.split(".")[1];
-    //---Checa se nao ha casas decimais
-    if ( !decimaisVet1 || !decimaisVet2) {
-      significativos = 0;
-    }
-    else {
-      significativos = Math.min(decimaisVet1.length, decimaisVet2.length);
-    }
-  }
-  else {
-    significativos = 3;
-  }
-  //--SE FOR UMA SUBTRAÇÃO, O ÂNGULO X A SER SUBTRAÍDO SE TRANSFORMA EM -X
-  if (ckb[1].checked) {
-    arrAngulos[1] = parseFloat(arrAngulos[1]) + parseFloat(180);
-  }
   //--ANGULO ENTRE 2 VETORES
   angulo = Math.max(arrAngulos[0], arrAngulos[1]) - Math.min(arrAngulos[0], arrAngulos[1]);
   //--LEI DOS COSSENOS
@@ -156,7 +138,6 @@ function calcResultanteVetPadrao(arrModulos, arrAngulos, ckb) {
 }
 
 function round(value, decimals) {
-  //return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
   value = Number(value);
   return value.toFixed(decimals);
 }
@@ -224,7 +205,7 @@ function linkar(vetor) {
 }
 
 function acrescentarVetPadrao() {
-  let section, titulo, numeroProxVetor, imagemSeta, label, input;
+  let section, titulo, numeroProxVetor, imagemSeta, label, input, radioButtons;
   numeroProxVetor = document.querySelectorAll('.vetor').length+1;
   section = cria('section');
   section.classList.add('vetor');
@@ -282,6 +263,23 @@ function acrescentarVetPadrao() {
   label.appendChild(input);
   section.appendChild(label);
 
+  label = cria('label');
+  label.textContent = 'Soma';
+  input = cria('input');
+  input.type = 'radio';
+  input.checked = true;
+  input.name = `op${numeroProxVetor-1}`;
+  label.appendChild(input);
+  section.appendChild(label);
+
+  label = cria('label');
+  label.textContent = 'Subtracao';
+  input = cria('input');
+  input.type = 'radio';
+  input.name = `op${numeroProxVetor-1}`;
+  label.appendChild(input);
+  section.appendChild(label);
+
   linkar(section);
   const vetoresPadraoEls = document.querySelectorAll('.vetor');
   insertAfter(section, vetoresPadraoEls[vetoresPadraoEls.length-1]);
@@ -304,16 +302,29 @@ function controlaAdicaoRemocaoVetPadrao() {
 }
 
 function calculaTodosVetores() {
-  let ckb = document.getElementsByName('op'),
-      vetoresEl = document.querySelectorAll('.vetor'),
+  let vetoresEl = document.querySelectorAll('.vetor'),
       arrModulos = [],
       arrAngulos = [],
+      arrOpcao = [],
       modResult,
       angResult,
-      significativos;
-  for (let vetor of vetoresEl) { //array tem 1 elemento a mais
-    arrModulos.push(vetor.querySelector('.modulo').value);
-    arrAngulos.push(vetor.querySelector('.valorFinal').value);
+      desejaSignificativos = document.querySelector('#significativos').checked,
+      significativos = [];
+  for (let i=0; i < vetoresEl.length; i++) { //array tem 1 elemento a mais
+    let valorModulo = vetoresEl[i].querySelector('.modulo').value;
+    arrModulos.push(valorModulo);
+    //--Esta gambiarra checa se eh uma subtraçao ou nao
+    if (document.getElementsByName(`op${i}`)[1].checked) {
+      arrAngulos.push(vetoresEl[i].querySelector('.valorFinal').value+180);
+    }
+    else {
+      arrAngulos.push(vetoresEl[i].querySelector('.valorFinal').value);
+    }
+    //--Esta outra gambiarra checa os alg. significativos
+    if (desejaSignificativos) {
+      let parteDecimal = valorModulo.split(".")[1]
+      significativos.push( parteDecimal ? parteDecimal.length : 0 );
+    }
   }
   for (let i = 0; i < (vetoresEl.length)-1; i++) { //a quantidade de cálculos feitos é a quantidade de vetores menos um
     //vetores auxiliares para facilitar a passagem dos vetores para realizar o cálculo
@@ -327,10 +338,11 @@ function calculaTodosVetores() {
       arrA = [angResult, arrAngulos[(i+1)]];
       arrM = [modResult, arrModulos[(i+1)]];
     }
-    let values = calcResultanteVetPadrao(arrM, arrA, ckb);
+    let values = calcResultanteVetPadrao(arrM, arrA);
     modResult = values[0];
     angResult = values[1];
-    significativos = values[2];
+    //significativos.push(values[2]);
   }
+  significativos = desejaSignificativos ? Math.min(...significativos) : 3;
   montarVetor(modResult, round(angResult, 1), significativos);
 }
