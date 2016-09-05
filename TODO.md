@@ -41,6 +41,7 @@
   - [ ] incluir exercícios
   - [ ] posicionar checkboxes e inputs adequadamente em relação às label
   - [ ] reorganizar a função de cálculo da resultante dos ângulos de forma a ordenar o array inicialmente (sendo a primeira posição o maior valor), otimizando o código e evitando verificações repetitivas
+  - [ ] colocar uma checkbox para cada vetor
 
 - Detalhes
   - [ ] criar logotipo
