@@ -35,6 +35,7 @@
     arctg (i/j);
     ```
 - Finalização e otimização do código e material
+  - [ ] separar páginas
   - [ ] finalizar uso de localStorage
   - [x] otimizar cálculos com vetores padrão :worried:
   - [ ] permitir melhor modularização dos calculos com vetores unit. padrão :frowning:
