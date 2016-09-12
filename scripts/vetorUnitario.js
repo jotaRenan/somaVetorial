@@ -2,50 +2,24 @@
 
 function calcResultanteVetUnitario() {
   let vetUnitarioEls = document.getElementsByClassName('vetUn'),
-      vetUnResEl = document.querySelector('.vetUn-resultante'),
-      //--Valores dos componentes inseridos por usuario #j
-      compI = [],
-      compJ = [],
-      compK = [],
-      //--Componentes resultantes #j
-      resultanteComponenteI,
-      resultanteComponenteJ,
-      resultanteComponenteK;
+      arrayComVetores = [];
 
-  for ( let vetorUnitario of vetUnitarioEls) {
-    //---Vai colocando, nos arrays, os valores inseridos. #j
-    let valorCompI = parseFloat(vetorUnitario.querySelector('.compI').value),
-        valorCompJ = parseFloat(vetorUnitario.querySelector('.compJ').value),
-        valorCompK = parseFloat(vetorUnitario.querySelector('.compK').value);
-    //---Verifica se usuario deseja subtrair ao inves de adicionar
-    if (vetorUnitario.querySelector('.cbx-subtracao-un').checked) {
-      valorCompI *= (-1);
-      valorCompJ *= (-1);
-      valorCompK *= (-1);
-    }
-    compI.push(valorCompI);
-    compJ.push(valorCompJ);
-    compK.push(valorCompK);
+  for (let vetor of vetUnitarioEls) {
+    let objetoVetor = new VetorUnitario(vetor);
+    arrayComVetores.push(objetoVetor);
   }
-  //---Soma os valores das componentes #j
-  let componenteIResultado = calcTotal(compI),
-      componenteJResultado = calcTotal(compJ),
-      componenteKResultado = calcTotal(compK),
-      moduloVetorResultante;
 
   exibirVetorResultante();
 
-  //---Exibe valores das componentes #j
-  resultanteComponenteI = vetUnResEl.querySelector('#resI');
-  resultanteComponenteI.value = componenteIResultado;
-  resultanteComponenteJ = vetUnResEl.querySelector('#resJ');
-  resultanteComponenteJ.value = componenteJResultado;
-  resultanteComponenteK = vetUnResEl.querySelector('#resK');
-  resultanteComponenteK.value = componenteKResultado;
-  //---Calcula e exibe modulo do vetor resultante #j
-  moduloVetorResultante = Math.sqrt( Math.pow(componenteJResultado, 2) + 
-    Math.pow(componenteIResultado, 2) + Math.pow(componenteKResultado, 2) );
-  vetUnResEl.querySelector('.modulo').value = round(moduloVetorResultante, 3);
+  let vetorResultante,
+      vetUnResEl = document.querySelector('.vetUn-resultante');
+  //--Calcula e atribui resultado da soma dos vetores unitarios #j    
+  vetorResultante = VetorUnitario.soma(...arrayComVetores);
+  //--Atualiza campos com valores apropriados #j
+  vetUnResEl.querySelector('#resI').value = vetorResultante.i;
+  vetUnResEl.querySelector('#resJ').value = vetorResultante.j;
+  vetUnResEl.querySelector('#resK').value = vetorResultante.k;
+  vetUnResEl.querySelector('.modulo').value = vetorResultante.modulo;
 }
 
 function calcTotal(comp) {
