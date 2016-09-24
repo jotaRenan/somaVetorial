@@ -44,6 +44,7 @@
   - [x] colocar uma checkbox para cada vetor
 
 - Detalhes
+  - [ ] utilizar imagens originais
   - [ ] criar logotipo
   - [ ] escolher esquema de cores
   - [ ] incluir orientador e coorientador na pagina 'quem somos' :star:
