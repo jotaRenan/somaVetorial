@@ -174,3 +174,13 @@ label {
   padding: 0;
   margin: 0;
 }
+
+#exsimg {
+  width: 200px;
+  height: 150px;
+}
+
+input[class=inputexs] {
+  width: 15px;
+  height: 15px;
+}
