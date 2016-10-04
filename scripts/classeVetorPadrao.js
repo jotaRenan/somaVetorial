@@ -5,8 +5,7 @@ class vetorPadrao {
       this._modulo = vetor.querySelector('.modulo').value;
       this._anguloAbs = vetor.querySelector('.valorNumber').value;
       this._anguloCorresp = vetor.querySelector('.valorFinal').value;
-      //Dar jeito de lidar com names dos radio buttons.
-      //this._isSubtracao = 
+      //this._isSubtracao = document.getElementsByName(`op${i}`)[1].checked;
     }
     else {
       this._modulo = 1;
@@ -16,8 +15,8 @@ class vetorPadrao {
     }
   }
 
-  convertePadraoUnit(values) {
-    //values é um vetor que vai conter em 0 o módulo e em 1 o ângulo do vetor
+  convertePadraoUnit(vetor) {
+    //vetor é um array que vai conter em 0 o módulo e em 1 o ângulo do vetor
     let modulo,
         radiano,
         sinAng,
@@ -25,8 +24,8 @@ class vetorPadrao {
         compI,
         compJ,
         compK;
-    modulo = values[0];
-    angulo = values[1];
+    modulo = vetor[0];
+    angulo = vetor[1];
     //transforma angulo em rad
     radiano = (Math.PI * angulo)/180;
     //calcula os componentes
@@ -38,8 +37,8 @@ class vetorPadrao {
     return [compI, compJ, compK];
   }
 
-  converteUnitPadrao(values) {
-    //values é um vetor que vai conter em 0 o compI, em 1 o compJ e em 2 o compK
+  converteUnitPadrao(vetor) {
+    //vetor é um array que vai conter em 0 o compI, em 1 o compJ e em 2 o compK
     let modulo,
         angulo,
         radiano,
@@ -47,9 +46,9 @@ class vetorPadrao {
         compJ,
         compK,
         senAng;
-    compI = values[0];
-    compJ = values[1];
-    compK = values[2];
+    compI = vetor[0];
+    compJ = vetor[1];
+    compK = vetor[2];
     //calcula o modulo a partir do componente
     modulo = parseFloat(Math.sqrt( Math.pow(compI, 2) + Math.pow(compJ, 2) + Math.pow(compK, 2) ));
     //calcula o angulo
@@ -60,13 +59,70 @@ class vetorPadrao {
     return [modulo, angulo];
   }
 
-  calculaResultante() {
-    let compI,
-        compJ,
-        compK;
+  /*calculaResultante(vetor1, vetor2) {
+    let comp1I,
+        comp1J,
+        comp1K,
+        comp2I,
+        comp2J,
+        comp2K,
+        compIFinal
+        compJFinal
+        compKFinal;
+    comp1I = vetor1[0];
+    comp1J = vetor1[1];
+    comp1K = vetor1[2];
+    comp2I = vetor2[0];
+    comp2J = vetor2[1];
+    comp2K = vetor2[2];
+    compIFinal = comp1I + comp2I;
+    compJFinal = comp1J + comp2J;
+    compKFinal = comp1K + comp2K;
+    return [compIFinal, compJFinal, compKFinal];
+  }*/
 
+  inverterValores(vetor) {
+        let compI,
+	        compJ,
+	        compK;
+	    compI = vetor[0];
+	    compJ = vetor[1];
+	    compK = vetor[2];
+		compI *= -1;
+		compJ *= -1;
+		compK *= -1;
+		return [compI, compJ, compK];
+   }
 
-  }
+   static soma(...vetores) {
+		let vetResultante = new vetorPadrao(),
+			compI,
+			compJ,
+			compK,
+			compIFinal = 0,
+	        compJFinal = 0,
+	        compKFinal = 0;
+		for (let vet of vetores) {
+			let values = convertePadraoUnit(vet);
+			compI = values[0];
+			compJ = values[1];
+			compK = values[2];
+			if (vet.isSubtracao) {
+				let values = inverterValores(vet);
+				compI = values[0];
+				compJ = values[1];
+				compK = values[2];
+			}
+			compIFinal += compI;
+			compJFinal += compJ;
+			compKFinal += compK;
+		}
+		let values = converteUnitPadrao([compIFinal, compJFinal, compKFinal]);
+		vetResultante.modulo = values[0];
+		vetResultante.angulo = values[1];
+		return vetResultante;
+   }
+
 
   set modulo(mod) {
     this._modulo = mod;
