@@ -184,3 +184,7 @@ input[class=inputexs] {
   width: 15px;
   height: 15px;
 }
+
+#enviaResp {
+  text-align: center;
+}
