@@ -5,6 +5,7 @@ class vetorPadrao {
       this._modulo = vetor.querySelector('.modulo').value;
       this._anguloAbs = vetor.querySelector('.valorNumber').value;
       this._anguloCorresp = vetor.querySelector('.valorFinal').value;
+      //RESOLVER COMO LIDAR COM A SUBTRAÇAO
       //this._isSubtracao = document.getElementsByName(`op${i}`)[1].checked;
     }
     else {
@@ -82,26 +83,26 @@ class vetorPadrao {
   }*/
 
   inverterValores(vetor) {
-        let compI,
-	        compJ,
-	        compK;
-	    compI = vetor[0];
-	    compJ = vetor[1];
-	    compK = vetor[2];
+    let compI,
+        compJ,
+        compK;
+    compI = vetor[0];
+    compJ = vetor[1];
+    compK = vetor[2];
 		compI *= -1;
 		compJ *= -1;
 		compK *= -1;
 		return [compI, compJ, compK];
-   }
+  }
 
-   static soma(...vetores) {
+  static soma(...vetores) {
 		let vetResultante = new vetorPadrao(),
 			compI,
 			compJ,
 			compK,
 			compIFinal = 0,
-	        compJFinal = 0,
-	        compKFinal = 0;
+	    compJFinal = 0,
+	    compKFinal = 0;
 		for (let vet of vetores) {
 			let values = convertePadraoUnit(vet);
 			compI = values[0];
@@ -121,7 +122,7 @@ class vetorPadrao {
 		vetResultante.modulo = values[0];
 		vetResultante.angulo = values[1];
 		return vetResultante;
-   }
+  }
 
 
   set modulo(mod) {
