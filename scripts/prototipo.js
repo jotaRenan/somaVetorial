@@ -50,90 +50,25 @@ function rotacionarSetaDoVetor(val, vetor) {
 }
 
 function calcResultanteVetPadrao(arrModulos, arrAngulos) {
-  let angulo,
-      modResult,
+  let modResult,
       angResult,
-      a = arrModulos[0],
-      b = arrModulos[1];
+      vetor1,
+      vetor2,
+      compI,
+      compJ,
+      compK,
+      vetorResult;
   //DEFINIÇÃO DO NÚMERO DE ALGARISMOS SIGNIFICATIVOS
   let desejaSignificativoEl = document.querySelector('#significativos'),
       significativos;
-  //--ANGULO ENTRE 2 VETORES
-  angulo = Math.max(arrAngulos[0], arrAngulos[1]) - Math.min(arrAngulos[0], arrAngulos[1]);
-  //--LEI DOS COSSENOS
-  modResult = Math.sqrt( a*a + b*b - 2*a*b*Math.cos(Math.PI - angulo*Math.PI/180) );
-  //--ANGULO RESULTANTE
-  //angulo mesma direção e sentido
-  if (arrAngulos[0] == arrAngulos[1]) {
-    angResult = arrAngulos[0];
-  }
-  //angulo mesma direção e sentidos diferentes
-  else if (Math.max(arrAngulos[0], arrAngulos[1]) - Math.min(arrAngulos[0], arrAngulos[1]) == 180) {
-    if (arrModulos[0] > arrModulos[1]) {
-      angResult = arrAngulos[0];
-    }
-    else {
-      angResult = arrAngulos[1];
-    }
-  }
-  //angulo direção e sentidos distintos
-  else {
-    //calculando o angulo entre o vetor resultante e o maior vetor
-    var senoX = Math.min(arrModulos[0], arrModulos[1]) * Math.sin((180-angulo)*Math.PI/180)/modResult;
-    var rad = Math.asin(senoX);
-    var x = (rad*180)/Math.PI;
-    if (x < 0) {
-      x*= -1;
-    }
-    //pequena gambiarra
-    if (parseFloat(arrAngulos[0]) === 0 || parseFloat(arrAngulos[0]) === 360) {
-      if (parseFloat(arrAngulos[1]) > 180) {
-        arrAngulos[0] = 360;
-      }
-      else {
-        arrAngulos[0] = 0;
-      }
-    }
-    if (parseFloat(arrAngulos[1]) === 0 || parseFloat(arrAngulos[1]) === 360) {
-      if (parseFloat(arrAngulos[0]) > 180) {
-        arrAngulos[1] = 360;
-      }
-      else {
-        arrAngulos[1] = 0;
-      }
-    }
-    //formando o ângulo resultante
-    if (parseFloat(arrModulos[0]) > parseFloat(arrModulos[1])) {
-      if (parseFloat(arrAngulos[0]) > parseFloat(arrAngulos[1])) { //não ta entrando nessa condição
-        angResult = parseFloat(arrAngulos[0]) - parseFloat(x);
-      }
-      else {
-        angResult = parseFloat(arrAngulos[0]) + parseFloat(x);
-      }
-    }
-    else if (parseFloat(arrModulos[1]) > parseFloat(arrModulos[0])) {
-      if (parseFloat(arrAngulos[1]) > parseFloat(arrAngulos[0])) {
-        angResult = parseFloat(arrAngulos[1]) - parseFloat(x);
-      }
-      else {
-        angResult = parseFloat(arrAngulos[1]) + parseFloat(x);
-      }
-    }
-    else if (parseFloat(arrModulos[0]) === parseFloat(arrModulos[1])) {
-      if (parseFloat(arrAngulos[0]) > 270 && parseFloat(arrAngulos[1]) < 90) {
-        angResult = parseFloat(arrAngulos[0]) + parseFloat(x);
-      } 
-      else if (parseFloat(arrAngulos[1]) > 270 && parseFloat(arrAngulos[0]) < 90) {
-        angResult = parseFloat(arrAngulos[1]) + parseFloat(x);
-      }     
-      else {
-        angResult = parseFloat(Math.min(arrAngulos[0], arrAngulos[1])) + parseFloat(x);
-      }
-    }
-  }
-  if (angResult > 360) {
-    angResult %= 360; 
-  }
+  vetor1 = convertePadraoUnit(arrModulos[0], arrAngulos[0]);
+  vetor2 = convertePadraoUnit(arrModulos[1], arrAngulos[1]);
+  compI = vetor1[0] + vetor2[0];
+  compJ = vetor1[1] + vetor2[1];
+  compK = vetor1[2] + vetor2[3];
+  vetorResult = converteUnitPadrao(compI, compJ, compK);
+  modResult = vetorResult[0];
+  angResult = vetorResult[1];
   return [modResult, angResult, significativos];
 }
 
@@ -345,4 +280,48 @@ function calculaTodosVetores() {
   }
   significativos = desejaSignificativos ? Math.min(...significativos) : 3;
   montarVetor(modResult, round(angResult, 1), significativos);
+}
+
+function convertePadraoUnit(vetor) {
+  //vetor é um array que vai conter em 0 o módulo e em 1 o ângulo do vetor
+  let modulo,
+      radiano,
+      sinAng,
+      angulo,
+      compI,
+      compJ,
+      compK;
+  modulo = vetor[0];
+  angulo = vetor[1];
+  //transforma angulo em rad
+  radiano = (Math.PI * angulo)/180;
+  //calcula os componentes
+  compK = 0; //componente K não será necessário
+  compJ = Math.sin(radiano) * modulo;
+  sinAng = Math.sin(radiano);
+  compI = Math.cos(radiano) * modulo;
+  //a função retornará um vetor na ordem I, J, K
+  return [compI, compJ, compK];
+}
+
+function converteUnitPadrao(vetor) {
+  //vetor é um array que vai conter em 0 o compI, em 1 o compJ e em 2 o compK
+  let modulo,
+      angulo,
+      radiano,
+      compI,
+      compJ,
+      compK,
+      senAng;
+  compI = vetor[0];
+  compJ = vetor[1];
+  compK = vetor[2];
+  //calcula o modulo a partir do componente
+  modulo = parseFloat(Math.sqrt( Math.pow(compI, 2) + Math.pow(compJ, 2) + Math.pow(compK, 2) ));
+  //calcula o angulo
+  senAng = (compI/modulo);
+  radiano = Math.asin(senAng);
+  angulo = (radiano*180)/Math.PI;
+  //a função retornará um vetor na ordem módulo, ângulo
+  return [modulo, angulo];
 }
