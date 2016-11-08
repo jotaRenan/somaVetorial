@@ -1,3 +1,4 @@
+const SIGNIFICATIVOS = 3;
 class VetorPadrao {
 
   constructor (vetor) {
@@ -38,9 +39,9 @@ class VetorPadrao {
     radiano = (Math.PI * angulo)/180;
     //calcula os componentes
     compK = 0; //componente K não será necessário
-    compJ = Math.sin(radiano) * modulo;
-    sinAng = Math.sin(radiano);
-    compI = Math.cos(radiano) * modulo;
+    compJ = round(Math.sin(radiano), SIGNIFICATIVOS) * modulo;
+    sinAng = round(Math.sin(radiano), SIGNIFICATIVOS);
+    compI = round(Math.cos(radiano), SIGNIFICATIVOS) * modulo;
 
     //funcao retornará uma instancia de vetorUnitario
     return new VetorUnitario(compI, compJ, compK);
@@ -67,7 +68,11 @@ class VetorPadrao {
     else {
       cosAng = (compI/modulo);
       radiano = Math.acos(cosAng);
+      radiano = Math.atan2(compJ, compI);
       angulo = (radiano*180)/Math.PI;
+      if(angulo < 0) {
+        angulo += 360;
+      }
     }
     //retorna instância de VetorPadrao
     return new VetorPadrao(modulo, angulo);
