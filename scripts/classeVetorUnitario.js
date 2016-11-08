@@ -8,6 +8,11 @@ class VetorUnitario {
 			this._isSubtracao = vetorUnEl.querySelector('.cbx-subtracao-un').checked;
 			this._modulo = this.calculaResultante();
 		}
+		else if (arguments.length === 3) {
+			this.compI = arguments[0];
+			this.compJ = arguments[1];
+			this.compK = arguments[2];
+		}
 		else {
 			this.compI = 0;
 			this.compJ = 0;

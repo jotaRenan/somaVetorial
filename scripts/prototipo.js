@@ -49,29 +49,6 @@ function rotacionarSetaDoVetor(val, vetor) {
   seta.style.transform = 'rotate(' + (-val) + 'deg)';
 }
 
-function calcResultanteVetPadrao(arrModulos, arrAngulos) {
-  let modResult,
-      angResult,
-      vetor1,
-      vetor2,
-      compI,
-      compJ,
-      compK,
-      vetorResult;
-  //DEFINIÇÃO DO NÚMERO DE ALGARISMOS SIGNIFICATIVOS
-  let desejaSignificativoEl = document.querySelector('#significativos'),
-      significativos;
-  vetor1 = convertePadraoUnit(arrModulos[0], arrAngulos[0]);
-  vetor2 = convertePadraoUnit(arrModulos[1], arrAngulos[1]);
-  compI = vetor1[0] + vetor2[0];
-  compJ = vetor1[1] + vetor2[1];
-  compK = vetor1[2] + vetor2[3];
-  vetorResult = converteUnitPadrao(compI, compJ, compK);
-  modResult = vetorResult[0];
-  angResult = vetorResult[1];
-  return [modResult, angResult, significativos];
-}
-
 function round(value, decimals) {
   value = Number(value);
   return value.toFixed(decimals);
@@ -88,7 +65,7 @@ function montarVetor(mod, angulo, significativos) {
   }
   //--caso o modulo da resultante seja nula, caso especial
   let  seta = vetRes.querySelector('.seta');
-  if (mod === 0) {
+  if (mod == 0) {
     seta.style.transform = 'rotate(0)';
     seta.src = 'imgs\\zero.png';
     vetRes.querySelector('.valorFinal').value = 0;
@@ -96,6 +73,9 @@ function montarVetor(mod, angulo, significativos) {
   else {
     seta.src = 'imgs\\seta1.png';
     seta.style.transform = 'rotate(' + (-angulo) + 'deg)';
+    console.log(mod);
+    angulo = parseFloat(angulo, 10);
+    console.log(angulo);
     vetRes.querySelector('.valorFinal').value = angulo;
   }
   //---Mostra modulo com o número correto de alg significativos
@@ -238,90 +218,16 @@ function controlaAdicaoRemocaoVetPadrao() {
 
 function calculaTodosVetores() {
   let vetoresEl = document.querySelectorAll('.vetor'),
-      arrModulos = [],
-      arrAngulos = [],
-      arrOpcao = [],
-      modResult,
-      angResult,
       desejaSignificativos = document.querySelector('#significativos').checked,
-      significativos = [];
-  for (let i=0; i < vetoresEl.length; i++) { //array tem 1 elemento a mais
-    let valorModulo = vetoresEl[i].querySelector('.modulo').value;
-    arrModulos.push(valorModulo);
-    //--Esta gambiarra checa se eh uma subtraçao ou nao
-    if (document.getElementsByName(`op${i}`)[1].checked) {
-      arrAngulos.push(vetoresEl[i].querySelector('.valorFinal').value+180);
-    }
-    else {
-      arrAngulos.push(vetoresEl[i].querySelector('.valorFinal').value);
-    }
-    //--Esta outra gambiarra checa os alg. significativos
-    if (desejaSignificativos) {
-      let parteDecimal = valorModulo.split(".")[1]
-      significativos.push( parteDecimal ? parteDecimal.length : 0 );
-    }
+      significativos = [],
+      valoresVetores = [];
+  //Gera objetos baseados na classe VetorPadrao baseado nos elementos do HTML
+  for (let vetorElAtual of vetoresEl) {
+    valoresVetores.push( new VetorPadrao(vetorElAtual) );
   }
-  for (let i = 0; i < (vetoresEl.length)-1; i++) { //a quantidade de cálculos feitos é a quantidade de vetores menos um
-    //vetores auxiliares para facilitar a passagem dos vetores para realizar o cálculo
-    let arrA,
-        arrM;
-    if (i == 0) {
-      arrA = [arrAngulos[0], arrAngulos[1]];
-      arrM = [arrModulos[0], arrModulos[1]];
-    }
-    else {
-      arrA = [angResult, arrAngulos[(i+1)]];
-      arrM = [modResult, arrModulos[(i+1)]];
-    }
-    let values = calcResultanteVetPadrao(arrM, arrA);
-    modResult = values[0];
-    angResult = values[1];
-    //significativos.push(values[2]);
-  }
-  significativos = desejaSignificativos ? Math.min(...significativos) : 3;
-  montarVetor(modResult, round(angResult, 1), significativos);
-}
+  //Calcula e atribui resultante da soma
+  let vetorResultante = VetorPadrao.soma(valoresVetores);
 
-function convertePadraoUnit(vetor) {
-  //vetor é um array que vai conter em 0 o módulo e em 1 o ângulo do vetor
-  let modulo,
-      radiano,
-      sinAng,
-      angulo,
-      compI,
-      compJ,
-      compK;
-  modulo = vetor[0];
-  angulo = vetor[1];
-  //transforma angulo em rad
-  radiano = (Math.PI * angulo)/180;
-  //calcula os componentes
-  compK = 0; //componente K não será necessário
-  compJ = Math.sin(radiano) * modulo;
-  sinAng = Math.sin(radiano);
-  compI = Math.cos(radiano) * modulo;
-  //a função retornará um vetor na ordem I, J, K
-  return [compI, compJ, compK];
-}
-
-function converteUnitPadrao(vetor) {
-  //vetor é um array que vai conter em 0 o compI, em 1 o compJ e em 2 o compK
-  let modulo,
-      angulo,
-      radiano,
-      compI,
-      compJ,
-      compK,
-      senAng;
-  compI = vetor[0];
-  compJ = vetor[1];
-  compK = vetor[2];
-  //calcula o modulo a partir do componente
-  modulo = parseFloat(Math.sqrt( Math.pow(compI, 2) + Math.pow(compJ, 2) + Math.pow(compK, 2) ));
-  //calcula o angulo
-  senAng = (compI/modulo);
-  radiano = Math.asin(senAng);
-  angulo = (radiano*180)/Math.PI;
-  //a função retornará um vetor na ordem módulo, ângulo
-  return [modulo, angulo];
+  //ALGARISMOS SIGNIFICATIVOS DESABILITADOS. SAO O TERCEIRO ARG DA FUNCAO ABAIXO
+  montarVetor(vetorResultante.modulo, round(vetorResultante.angulo, 1), 3);
 }
