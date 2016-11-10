@@ -4,54 +4,62 @@ window.onload = function() {
 };
 
 function correcao() {
-	
-	let totQuests, totAcertos;
-
-	let ex1 = document.getElementsByName('ex1');
-	let ex2 = document.getElementsByName('ex2');
-	let ex3 = document.getElementsByName('ex3');
-	let ex4 = document.getElementsByName('ex4');
+	let caixaResultEl = document.querySelector("#resultExcs"), 
+		respEspEl = document.querySelector("#respSpace");
+		totAcertos = 0, 
+		totQuests = 4,
+		razao = 0,
+		stringResult = "",
+		ex1 = document.getElementsByName('ex1'),
+		ex2 = document.getElementsByName('ex2'),
+		ex3 = document.getElementsByName('ex3'),
+		ex4 = document.getElementsByName('ex4');
 
 	if (ex1[3].checked) {
-		totAcertos++;
-		totQuests++;	
+		totAcertos+=1;	
+		console.log("asdsa1");
 	}
-	else
-		totQuests++;
+
 
 	if (ex2[2].checked) {
 		totAcertos++;
-		totQuests++;	
+		console.log("asdsa2");
 	}
-	else
-		totQuests++;
+
 
 	if (ex3[3].checked) {
 		totAcertos++;
-		totQuests++;
 	}
-	else
-		totQuests++;
 
 	if (ex4[3].checked) {
 		totAcertos++;
-		totQuests++;
-	}
-	else {
-		totQuests++;
 	}
 
-	switch((totAcertos/totQuests)*100) {
+	caixaResultEl.style.display = "block";
+	console.log(totQuests);
+	console.log(totAcertos);
+	razao = ((totAcertos/totQuests)*100);
+	console.log(razao);
+
+
+	switch(razao) {
 		case 100:
-			alert ("Excelente! Você  obteve 100% de acerto!");
+			stringResult = "Excelente! Você  obteve 100% de acerto!";
+			break;
 		case 75:
-			alert ("Muito bom! Você obteve 75% de acerto!");
+			stringResult = "Muito bom! Você obteve 75% de acerto!";
+			break;
 		case 50:
-			alert ("Você obteve 50% de acerto. Que tal ler novamente sobre a matéria?");
+			stringResult = "Você obteve 50% de acerto. Que tal ler novamente sobre a matéria?";
+			break;
 		case 25:
-			alert ("Ops, você obteve apenas 25% de acerto. Podemos melhorar!");
+			stringResult = "Ops, você obteve apenas 25% de acerto. Podemos melhorar!";
+			break;
 		case 0:
-			alert ("Você não acertou nenhuma questão, mas não se preocupe, relea a matéria clicando aqui e tenha a certeza que terá 100% de acerto da próxima vez!");
+			stringResult = "Você não acertou nenhuma questão, mas não se preocupe, releia a matéria em 'Como Funciona' e tenha a certeza que terá 100% de acerto da próxima vez!";
+			break;
 
 	}
+
+	respEspEl.textContent = stringResult;
 }

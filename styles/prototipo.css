@@ -233,3 +233,9 @@ li.dropdown {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+#resultExcs {
+  display: none;
+  width: 100%;
+  background-color: yellow;
+}
