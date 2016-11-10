@@ -7,7 +7,7 @@ class VetorPadrao {
       this._anguloAbs = vetor.querySelector('.valorNumber').value;
       this._anguloCorresp = vetor.querySelector('.valorFinal').value;
       let parteDecimal = this._modulo.split(".")[1]
-      this._significativos =( parteDecimal ? parteDecimal.length : 0 );
+      this._significativos = ( parteDecimal ? parteDecimal.length : 0 );
       // Descobre se está selecionada subtraçao.
       let i = vetor.querySelector('h3').textContent;
       i = parseInt(i.substr(6,1), 10)-1;

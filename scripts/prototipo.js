@@ -217,7 +217,7 @@ function controlaAdicaoRemocaoVetPadrao() {
 function calculaTodosVetores() {
   let vetoresEl = document.querySelectorAll('.vetor'),
       desejaSignificativos = document.querySelector('#significativos').checked,
-      significativos = [],
+      significativos,
       valoresVetores = [];
   
   
@@ -227,7 +227,8 @@ function calculaTodosVetores() {
   }
   //Calcula e atribui resultante da soma
   let vetorResultante = VetorPadrao.soma(valoresVetores);
+  significativos = desejaSignificativos ? vetorResultante.significativos : 3;
 
   //ALGARISMOS SIGNIFICATIVOS DESABILITADOS. SAO O TERCEIRO ARG DA FUNCAO ABAIXO
-  montarVetor(vetorResultante.modulo, round(vetorResultante.angulo, 1), vetorResultante.significativos);
+  montarVetor(vetorResultante.modulo, round(vetorResultante.angulo, 1), significativos);
 }
