@@ -6,13 +6,9 @@ class VetorPadrao {
       this._modulo = vetor.querySelector('.modulo').value;
       this._anguloAbs = vetor.querySelector('.valorNumber').value;
       this._anguloCorresp = vetor.querySelector('.valorFinal').value;
-      //this._significativos = vetor.querySelector('.')
       let parteDecimal = this._modulo.split(".")[1]
       this._significativos =( parteDecimal ? parteDecimal.length : 0 );
-      console.log(this._significativos);
-
-
-      // Descobre se está selecionada subtraçao. (leve gambiarra)
+      // Descobre se está selecionada subtraçao.
       let i = vetor.querySelector('h3').textContent;
       i = parseInt(i.substr(6,1), 10)-1;
       this._isSubtracao = document.getElementsByName(`op${i}`)[1].checked;
@@ -46,10 +42,10 @@ class VetorPadrao {
     //transforma angulo em rad
     radiano = (Math.PI * angulo)/180;
     //calcula os componentes
-    compK = 0; //componente K não será necessário
-    compJ = round(Math.sin(radiano), objVetorPadrao.significativos) * modulo;
-    sinAng = round(Math.sin(radiano), objVetorPadrao.significativos);
     compI = round(Math.cos(radiano), objVetorPadrao.significativos) * modulo;
+    compJ = round(Math.sin(radiano), objVetorPadrao.significativos) * modulo;
+    compK = 0; //componente K não será necessário
+    sinAng = round(Math.sin(radiano), objVetorPadrao.significativos);
 
     //funcao retornará uma instancia de vetorUnitario
     return new VetorUnitario(compI, compJ, compK);
@@ -96,6 +92,7 @@ class VetorPadrao {
       this._anguloCorresp = this._anguloAbs%360;
   }
 
+  //Recebe array de objetos de VetorPadrao
   static soma(vetores) {
 		let versaoUnitario,
   			compIFinal = 0,
@@ -112,6 +109,7 @@ class VetorPadrao {
 			compJFinal += versaoUnitario.j;
 			compKFinal += versaoUnitario.k;
 		}
+    //Descobre menor numero de sig. entre os vetores
     significativos = Math.min(...significativos);
 		let vetResultante = this.converteUnitPadrao( new VetorUnitario(compIFinal, compJFinal, compKFinal), significativos );
 		return vetResultante;

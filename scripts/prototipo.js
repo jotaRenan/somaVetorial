@@ -73,9 +73,7 @@ function montarVetor(mod, angulo, significativos) {
   else {
     seta.src = 'imgs\\seta1.png';
     seta.style.transform = 'rotate(' + (-angulo) + 'deg)';
-    console.log(mod);
     angulo = parseFloat(angulo, 10);
-    console.log(angulo);
     vetRes.querySelector('.valorFinal').value = angulo;
   }
   //---Mostra modulo com o número correto de alg significativos
