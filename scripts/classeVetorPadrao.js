@@ -79,7 +79,12 @@ class VetorPadrao {
   }
 
   inverterValores() {
-    this._anguloAbs += 180;
+    if (this._anguloAbs > 179) {
+		this._anguloAbs -= 180;
+	}
+	else {
+		this._anguloAbs += 180;
+	}
     this._anguloCorresp = this._anguloAbs%360;
   }
 
