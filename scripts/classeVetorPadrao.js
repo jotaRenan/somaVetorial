@@ -1,4 +1,4 @@
-const SIGNIFICATIVOS = 3;
+
 class VetorPadrao {
 
   constructor (vetor) {
@@ -6,21 +6,29 @@ class VetorPadrao {
       this._modulo = vetor.querySelector('.modulo').value;
       this._anguloAbs = vetor.querySelector('.valorNumber').value;
       this._anguloCorresp = vetor.querySelector('.valorFinal').value;
+      //this._significativos = vetor.querySelector('.')
+      let parteDecimal = this._modulo.split(".")[1]
+      this._significativos =( parteDecimal ? parteDecimal.length : 0 );
+      console.log(this._significativos);
+
+
       // Descobre se está selecionada subtraçao. (leve gambiarra)
       let i = vetor.querySelector('h3').textContent;
       i = parseInt(i.substr(6,1), 10)-1;
       this._isSubtracao = document.getElementsByName(`op${i}`)[1].checked;
     }
-    else if (arguments.length === 2) {
+    else if (arguments.length === 3) {
       this._modulo = arguments[0];
       this._anguloAbs = arguments[1];
       this._anguloCorresp = this._anguloAbs%360;
+      this._significativos = arguments[2];
     }
     else {
       this._modulo = 1;
       this._anguloCorresp = 0;
       this._anguloAbs = 0;
       this._isSubtracao = false;
+      this._significativos = 3;
     }
   }
 
@@ -39,15 +47,15 @@ class VetorPadrao {
     radiano = (Math.PI * angulo)/180;
     //calcula os componentes
     compK = 0; //componente K não será necessário
-    compJ = round(Math.sin(radiano), SIGNIFICATIVOS) * modulo;
-    sinAng = round(Math.sin(radiano), SIGNIFICATIVOS);
-    compI = round(Math.cos(radiano), SIGNIFICATIVOS) * modulo;
+    compJ = round(Math.sin(radiano), objVetorPadrao.significativos) * modulo;
+    sinAng = round(Math.sin(radiano), objVetorPadrao.significativos);
+    compI = round(Math.cos(radiano), objVetorPadrao.significativos) * modulo;
 
     //funcao retornará uma instancia de vetorUnitario
     return new VetorUnitario(compI, compJ, compK);
   }
 
-  static converteUnitPadrao(objVetorUnit) {
+  static converteUnitPadrao(objVetorUnit, significativos) {
     //recebe instancia de VetorUnitario
     let modulo,
         angulo,
@@ -60,7 +68,7 @@ class VetorPadrao {
     compJ = objVetorUnit.j;
     compK = objVetorUnit.k;
     //calcula o modulo a partir do componente. IMPORTANTE: arredonda!!
-    modulo = round(parseFloat(Math.sqrt( Math.pow(compI, 2) + Math.pow(compJ, 2) + Math.pow(compK, 2) )), 3);
+    modulo = round(parseFloat(Math.sqrt( Math.pow(compI, 2) + Math.pow(compJ, 2) + Math.pow(compK, 2) )), significativos);
     //calcula o angulo. Caso mod=0, ang=0 p/ evitar divisao por 0
     if (modulo == 0) {
       angulo = 0;
@@ -75,26 +83,28 @@ class VetorPadrao {
       }
     }
     //retorna instância de VetorPadrao
-    return new VetorPadrao(modulo, angulo);
+    return new VetorPadrao(modulo, angulo, significativos);
   }
 
   inverterValores() {
     if (this._anguloAbs > 179) {
 		this._anguloAbs -= 180;
-	}
-	else {
-		this._anguloAbs += 180;
-	}
-    this._anguloCorresp = this._anguloAbs%360;
+  	}
+  	else {
+  		this._anguloAbs += 180;
+  	}
+      this._anguloCorresp = this._anguloAbs%360;
   }
 
   static soma(vetores) {
 		let versaoUnitario,
   			compIFinal = 0,
   	    compJFinal = 0,
-  	    compKFinal = 0;
+  	    compKFinal = 0,
+        significativos = [];
 		for (let vet of vetores) {
 			versaoUnitario = this.convertePadraoUnit(vet);
+      significativos.push(vet.significativos);
 			if (vet.isSubtracao) {
 				versaoUnitario.inverterValores();
 			}
@@ -102,7 +112,8 @@ class VetorPadrao {
 			compJFinal += versaoUnitario.j;
 			compKFinal += versaoUnitario.k;
 		}
-		let vetResultante = this.converteUnitPadrao( new VetorUnitario(compIFinal, compJFinal, compKFinal) );
+    significativos = Math.min(...significativos);
+		let vetResultante = this.converteUnitPadrao( new VetorUnitario(compIFinal, compJFinal, compKFinal), significativos );
 		return vetResultante;
   }
 
@@ -134,6 +145,14 @@ class VetorPadrao {
 
   get isSubtracao() {
     return this._isSubtracao;
+  }
+
+  set significativos(sig){
+    this._significativos = sig;
+  }
+
+  get significativos() {
+    return this._significativos;
   }
 
 }

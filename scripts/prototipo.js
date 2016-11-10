@@ -221,6 +221,8 @@ function calculaTodosVetores() {
       desejaSignificativos = document.querySelector('#significativos').checked,
       significativos = [],
       valoresVetores = [];
+  
+  
   //Gera objetos baseados na classe VetorPadrao baseado nos elementos do HTML
   for (let vetorElAtual of vetoresEl) {
     valoresVetores.push( new VetorPadrao(vetorElAtual) );
@@ -229,5 +231,5 @@ function calculaTodosVetores() {
   let vetorResultante = VetorPadrao.soma(valoresVetores);
 
   //ALGARISMOS SIGNIFICATIVOS DESABILITADOS. SAO O TERCEIRO ARG DA FUNCAO ABAIXO
-  montarVetor(vetorResultante.modulo, round(vetorResultante.angulo, 1), 3);
+  montarVetor(vetorResultante.modulo, round(vetorResultante.angulo, 1), vetorResultante.significativos);
 }
