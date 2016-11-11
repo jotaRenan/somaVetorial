@@ -7,6 +7,12 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="styles\\prototipo.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="favicons/manifest.json">
+  <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
@@ -33,66 +39,68 @@
     </header>
 
     <main> <!-- AQUI FICA O CONTEUDO PRINCIPAL -->
-      <h1>Produto Vetorial: </h1>
-        <div class="box">
-          <div class="box" id="produto-vetorial">
-            <section class="vetUn">
-              <h3>Vetor 1:</h3>
-              <label>Valor de î: 
-                <input type="number" class="compI" value="0">
-              </label>
-              <label>Valor de j:
-                <input type="number" class="compJ" value="0">
-              </label>
-              <label>Valor de k:
-                <input type="number" class="compK" value="0">
-              </label>
-              <label>Módulo:
-                <input type="number" class="moduloUn" disabled>
-              </label>
+    <div class="container">
+        <h1>Produto Vetorial: </h1>
+          <div class="box">
+            <div class="box" id="produto-vetorial">
+              <section class="vetUn">
+                <h3>Vetor 1:</h3>
+                <label>Valor de î: 
+                  <input type="number" class="compI" value="0">
+                </label>
+                <label>Valor de j:
+                  <input type="number" class="compJ" value="0">
+                </label>
+                <label>Valor de k:
+                  <input type="number" class="compK" value="0">
+                </label>
+                <label>Módulo:
+                  <input type="number" class="moduloUn" disabled>
+                </label>
+              </section>
+
+              <section class="vetUn">
+                <h3>Vetor 2:</h3>
+                <label>Valor de î: 
+                  <input type="number" class="compI" value="0">
+                </label>
+                <label>Valor de j:
+                  <input type="number" class="compJ" value="0">
+                </label>
+                <label>Valor de k:
+                  <input type="number" class="compK" value="0">
+                </label>
+                <label>Módulo:
+                  <input type="number" class="moduloUn" disabled>
+                </label>
+              </section>
+            </div>
+
+            <section class="butResult">
+              <!--<button id="addUn">Acrescentar Vetor</button>
+              <button id="remUn" disabled>Remover Vetor</button>-->
+              <button class="resultado">Resultado</button>
             </section>
 
-            <section class="vetUn">
-              <h3>Vetor 2:</h3>
-              <label>Valor de î: 
-                <input type="number" class="compI" value="0">
-              </label>
-              <label>Valor de j:
-                <input type="number" class="compJ" value="0">
-              </label>
-              <label>Valor de k:
-                <input type="number" class="compK" value="0">
-              </label>
-              <label>Módulo:
-                <input type="number" class="moduloUn" disabled>
-              </label>
-            </section>
           </div>
-
-          <section class="butResult">
-            <!--<button id="addUn">Acrescentar Vetor</button>
-            <button id="remUn" disabled>Remover Vetor</button>-->
-            <button class="resultado">Resultado</button>
-          </section>
-
+          <!-- SECTION RESULTANTE FICA ESCONDIDA ATE CLICAREM EM RESULTADO -->
+          
+            <section class="vetUn-resultante">
+              <h3>Vetor resultante:</h3>
+              <label>Módulo: 
+                <input type="number" class="modulo" value="0" placeholder="0" disabled>
+              </label>
+              <label>Componente î:
+                <input type="number" class="resI" disabled>
+              </label>
+              <label>Componente j:
+                <input type="number" class="resJ" disabled>
+              </label>
+              <label>Componente k:
+                <input type="number" class="resK" disabled>
+              </label>
+            </section>
         </div>
-        <!-- SECTION RESULTANTE FICA ESCONDIDA ATE CLICAREM EM RESULTADO -->
-        
-          <section class="vetUn-resultante">
-            <h3>Vetor resultante:</h3>
-            <label>Módulo: 
-              <input type="number" class="modulo" value="0" placeholder="0" disabled>
-            </label>
-            <label>Componente î:
-              <input type="number" class="resI" disabled>
-            </label>
-            <label>Componente j:
-              <input type="number" class="resJ" disabled>
-            </label>
-            <label>Componente k:
-              <input type="number" class="resK" disabled>
-            </label>
-          </section>
       </div>
     </main>
     
