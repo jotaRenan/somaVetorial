@@ -6,7 +6,7 @@ class VetorPadrao {
       this._modulo = vetor.querySelector('.modulo').value;
       this._anguloAbs = vetor.querySelector('.valorNumber').value;
       this._anguloCorresp = vetor.querySelector('.valorFinal').value;
-      let parteDecimal = this._modulo.split(".")[1]
+      let parteDecimal = this._modulo.split(".")[1];
       this._significativos = ( parteDecimal ? parteDecimal.length : 0 );
       // Descobre se está selecionada subtraçao.
       let i = vetor.querySelector('h3').textContent;
@@ -51,7 +51,7 @@ class VetorPadrao {
     return new VetorUnitario(compI, compJ, compK);
   }
 
-  static converteUnitPadrao(objVetorUnit, significativos) {
+  static converteUnitPadrao(objVetorUnit, significativos = 3) {
     //recebe instancia de VetorUnitario
     let modulo,
         angulo,
@@ -111,7 +111,8 @@ class VetorPadrao {
 		}
     //Descobre menor numero de sig. entre os vetores
     significativos = Math.min(...significativos);
-		let vetResultante = this.converteUnitPadrao( new VetorUnitario(compIFinal, compJFinal, compKFinal), significativos );
+		let vetResultante = this.converteUnitPadrao( new VetorUnitario(compIFinal, compJFinal, compKFinal));
+    vetResultante.significativos = significativos;
 		return vetResultante;
   }
 
