@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Calculando Vetores</title>
+  <meta charset="utf-8">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="styles\\prototipo.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div class="big-box">
+
+    <header id="header" class="row header">
+      <div class="container">
+        <nav class="box">
+          <ul>
+            <a href="index.html" title="Home"><li>Home</li></a>
+            <li class="dropdown">
+              <a href="#" class="dropbtn">Menu</a>
+              <div class="dropdown-content">
+                <a href="#">Cálculos com Vetores Padrão</a>
+                <a href="#">Cálculos com Vetores Unitários</a>
+                <a href="#">Produto Vetorial</a>
+              </div>
+            </li>
+            <a href="comofunciona.html" title="ComoFunciona"><li>Como Funciona</li></a>
+            <a href="exercicios.html" title="Exercícios"><li>Exercicios</li></a>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main> <!-- AQUI FICA O CONTEUDO PRINCIPAL -->
+      <h1>Produto Vetorial: </h1>
+        <div class="box">
+          <div class="box" id="produto-vetorial">
+            <section class="vetUn">
+              <h3>Vetor 1:</h3>
+              <label>Valor de î: 
+                <input type="number" class="compI" value="0">
+              </label>
+              <label>Valor de j:
+                <input type="number" class="compJ" value="0">
+              </label>
+              <label>Valor de k:
+                <input type="number" class="compK" value="0">
+              </label>
+              <label>Módulo:
+                <input type="number" class="moduloUn" disabled>
+              </label>
+            </section>
+
+            <section class="vetUn">
+              <h3>Vetor 2:</h3>
+              <label>Valor de î: 
+                <input type="number" class="compI" value="0">
+              </label>
+              <label>Valor de j:
+                <input type="number" class="compJ" value="0">
+              </label>
+              <label>Valor de k:
+                <input type="number" class="compK" value="0">
+              </label>
+              <label>Módulo:
+                <input type="number" class="moduloUn" disabled>
+              </label>
+            </section>
+          </div>
+
+          <section class="butResult">
+            <!--<button id="addUn">Acrescentar Vetor</button>
+            <button id="remUn" disabled>Remover Vetor</button>-->
+            <button class="resultado">Resultado</button>
+          </section>
+
+        </div>
+        <!-- SECTION RESULTANTE FICA ESCONDIDA ATE CLICAREM EM RESULTADO -->
+        
+          <section class="vetUn-resultante">
+            <h3>Vetor resultante:</h3>
+            <label>Módulo: 
+              <input type="number" class="modulo" value="0" placeholder="0" disabled>
+            </label>
+            <label>Componente î:
+              <input type="number" id="resI" disabled>
+            </label>
+            <label>Componente j:
+              <input type="number" id="resJ" disabled>
+            </label>
+            <label>Componente k:
+              <input type="number" id="resK" disabled>
+            </label>
+          </section>
+      </div>
+    </main>
+    
+    <footer class="row footer">
+      <!-- INSERIR RODAPE -->
+      <div class="container">
+        <!-- INSERIR LOGO CEFET -->
+        <ul class="box">
+          <a href="quemsomos.html"><li>Quem somos</li></a>
+        </ul>
+      </div>
+    </footer>
+
+  </div>
+  
+  <script src="scripts\\produtoVetorial.js" type="text/javascript" charset="utf-8" async defer></script>
+
+</body>
+</html>
