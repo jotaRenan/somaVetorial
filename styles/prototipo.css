@@ -93,7 +93,7 @@ input:not([type='range']) {
   padding: 0px 10px 15px;
 }
 
-.seta:not([src='imgs\\zero.png']) {
+.seta:not([src='Vs\\zero.png']) {
   transition: transform 0.3s linear;
   width: 100%;
   z-index: 0;
@@ -237,7 +237,7 @@ li.dropdown {
 #resultExcs {
   display: none;
   width: 100%;
-  background-color: yellow;
+  background-color: tomato;
 }
 
 .titulo {
@@ -249,4 +249,9 @@ li.dropdown {
 
 .titulo .subtitulo {
   font-size: 0.5em;
+}
+
+#resposta {
+  font-weight: 900;
+  color: 'green';
 }
