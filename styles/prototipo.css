@@ -14,12 +14,13 @@ body {
   margin: 0 auto;
 }
 
-img {
+/*img {
   width: 100%;
-}
+}*/
 
 header {
   background-color: deepskyblue;
+  padding: .5em;
 }
 
 ul { padding: 0; }
@@ -100,6 +101,7 @@ input:not([type='range']) {
 }
 footer {
   background-color: tomato;
+  padding: 0.5em;
 }
 
 @viewport{
@@ -254,4 +256,13 @@ li.dropdown {
 #resposta {
   font-weight: 900;
   color: 'green';
+}
+
+.no-resize {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.bold {
+  font-weight: bold;
 }
