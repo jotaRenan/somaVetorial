@@ -5,33 +5,31 @@ window.onload = function() {
 
 function correcao() {
 	let caixaResultEl = document.querySelector("#resultExcs"), 
-		respEspEl = document.querySelector("#respSpace");
+		respEspEl = document.querySelector("#respSpace"),
 		totAcertos = 0, 
 		totQuests = 4,
 		razao = 0,
 		stringResult = "",
-		ex1 = document.getElementsByName('ex1'),
-		ex2 = document.getElementsByName('ex2'),
-		ex3 = document.getElementsByName('ex3'),
-		ex4 = document.getElementsByName('ex4');
+		ex1 = document.querySelector('.ex1'),
+		ex2 = document.querySelector('.ex2'),
+		ex3 = document.querySelector('.ex3'),
+		ex4 = document.querySelector('.ex4');
 
-	if (ex1[3].checked) {
-		totAcertos+=1;	
-		console.log("asdsa1");
+	if (ex1.querySelector('.correto').checked) {
+		totAcertos++;	
 	}
 
 
-	if (ex2[2].checked) {
-		totAcertos++;
-		console.log("asdsa2");
-	}
-
-
-	if (ex3[3].checked) {
+	if (ex2.querySelector('.correto').checked) {
 		totAcertos++;
 	}
 
-	if (ex4[3].checked) {
+
+	if (ex3.querySelector('.correto').checked) {
+		totAcertos++;
+	}
+
+	if (ex4.querySelector('.correto').checked) {
 		totAcertos++;
 	}
 

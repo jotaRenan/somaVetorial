@@ -26,6 +26,10 @@ class VetorPadrao {
       this._isSubtracao = false;
       this._significativos = 3;
     }
+
+    if (this.significativos < 2) {
+      this.significativos = 2;
+    }
   }
 
   static convertePadraoUnit(objVetorPadrao) {
