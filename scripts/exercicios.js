@@ -14,48 +14,52 @@ function correcao() {
 		ex2 = document.querySelector('.ex2'),
 		ex3 = document.querySelector('.ex3'),
 		ex4 = document.querySelector('.ex4');
+		resp1 = ex1.querySelector('#resposta');
+		resp2 = ex2.querySelector('#resposta');
+		resp3 = ex3.querySelector('#resposta');
+		resp4 = ex4.querySelector('#resposta');
 		document.querySelector('#resposta').style.display = 'block';
 
 
 	if (ex1.querySelector('.correto').checked) {
 		totAcertos++;
-		ex1.querySelector('#resposta').textContent = "Resposta correta!";
-		ex1.querySelector('#resposta').style.color = 'green';	
+		resp1.textContent = "Resposta correta!";
+		resp1.style.color = 'green';	
 	}
 	else {
-		ex1.querySelector('#resposta').textContent = "Resposta incorreta!";
-		ex1.querySelector('#resposta').style.color = 'red';
+		resp1.textContent = "Resposta incorreta!";
+		resp1.style.color = 'red';
 	}
 
 
 	if (ex2.querySelector('.correto').checked) {
 		totAcertos++;
-		ex2.querySelector('#resposta').textContent = "Resposta correta!";
-		ex2.querySelector('#resposta').style.color = 'green';	
+		resp2.textContent = "Resposta correta!";
+		resp2.style.color = 'green';	
 	}
 	else {
-		ex2.querySelector('#resposta').textContent = "Resposta incorreta!";
-		ex2.querySelector('#resposta').style.color = 'red';
+		resp2.textContent = "Resposta incorreta!";
+		resp2.style.color = 'red';
 	}
 
 	if (ex3.querySelector('.correto').checked) {
 		totAcertos++;
-		ex3.querySelector('#resposta').textContent = "Resposta correta!";
-		ex3.querySelector('#resposta').style.color = 'green';	
+		resp3.textContent = "Resposta correta!";
+		resp3.style.color = 'green';	
 	}
 	else {
-		ex3.querySelector('#resposta').textContent = "Resposta incorreta!";
-		ex3.querySelector('#resposta').style.color = 'red';
+		resp3.textContent = "Resposta incorreta!";
+		resp3.style.color = 'red';
 	}
 
 	if (ex4.querySelector('.correto').checked) {
 		totAcertos++;
-		ex4.querySelector('#resposta').textContent = "Resposta correta!";
-		ex4.querySelector('#resposta').style.color = 'green';	
+		resp4.textContent = "Resposta correta!";
+		resp4.style.color = 'green';	
 	}
 	else {
-		ex4.querySelector('#resposta').textContent = "Resposta incorreta!";
-		ex4.querySelector('#resposta').style.color = 'red';
+		resp4.textContent = "Resposta incorreta!";
+		resp4.style.color = 'red';
 	}
 
 	caixaResultEl.style.display = "block";
